@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Citaty.Web", "src\Citaty.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Citaty.Core", "src\Citaty.Core\Citaty.Core.csproj", "{17A999C8-82D6-43B7-9CB3-081ED7E11287}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Citaty.Data", "..\src\Citaty.Data\Citaty.Data.csproj", "{55334DE6-A787-43BD-93B2-5E0EA1DB0F36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{17A999C8-82D6-43B7-9CB3-081ED7E11287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17A999C8-82D6-43B7-9CB3-081ED7E11287}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17A999C8-82D6-43B7-9CB3-081ED7E11287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55334DE6-A787-43BD-93B2-5E0EA1DB0F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55334DE6-A787-43BD-93B2-5E0EA1DB0F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55334DE6-A787-43BD-93B2-5E0EA1DB0F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55334DE6-A787-43BD-93B2-5E0EA1DB0F36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
