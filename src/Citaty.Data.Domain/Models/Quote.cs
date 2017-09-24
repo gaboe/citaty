@@ -1,4 +1,4 @@
-﻿namespace Citaty.Data.Domain.Models
+﻿namespace Quotes.Data.Domain.Models
 {
     public class Quote
     {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Citaty.Data.Domain.Models;
+using Quotes.Data.Domain.Models;
 
-namespace Citaty.Data.Repositories.Quotes
+namespace Quotes.Data.Repositories.Quotes
 {
     public interface IQuoteRepository
     {

@@ -1,8 +1,8 @@
 ﻿using Autofac;
-using Citaty.Core.Infrastructure;
-using Citaty.Data.Infrastructure;
+using Quotes.Core.Infrastructure;
+using Quotes.Data.Infrastructure;
 
-namespace Citaty.Api.Infrastructure
+namespace Quotes.Api.Infrastructure
 {
     public class WebModule : Module
     {

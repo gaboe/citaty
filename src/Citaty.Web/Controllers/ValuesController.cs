@@ -2,9 +2,7 @@
 using Citaty.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
-//using Citaty.Core.Services;
-
-namespace Citaty.Api.Controllers
+namespace Quotes.Api.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller

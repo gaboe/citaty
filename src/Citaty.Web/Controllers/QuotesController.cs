@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Citaty.Data.Queries;
 using GraphQL;
 using GraphQL.Types;
+using Microsoft.AspNetCore.Mvc;
+using Quotes.Data.Queries;
 
-namespace Citaty.Api.Controllers
+namespace Quotes.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/Quotes")]

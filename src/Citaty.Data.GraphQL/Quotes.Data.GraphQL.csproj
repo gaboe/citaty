@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Citaty.Data.Domain\Citaty.Data.Domain.csproj" />
+    <ProjectReference Include="..\Citaty.Data.Domain\Quotes.Data.Domain.csproj" />
   </ItemGroup>
 
 </Project>

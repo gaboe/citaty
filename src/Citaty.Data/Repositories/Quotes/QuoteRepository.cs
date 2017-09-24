@@ -1,9 +1,9 @@
-﻿using Citaty.Data.Domain.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Quotes.Data.Domain.Models;
 
-namespace Citaty.Data.Repositories.Quotes
+namespace Quotes.Data.Repositories.Quotes
 {
     internal class QuoteRepository : IQuoteRepository
     {

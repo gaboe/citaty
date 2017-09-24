@@ -20,9 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Citaty.Core\Citaty.Core.csproj" />
-    <ProjectReference Include="..\Citaty.Data.GraphQL\Citaty.Data.GraphQL.csproj" />
-    <ProjectReference Include="..\Citaty.Data\Citaty.Data.csproj" />
+    <ProjectReference Include="..\Citaty.Core\Quotes.Core.csproj" />
+    <ProjectReference Include="..\Citaty.Data.GraphQL\Quotes.Data.GraphQL.csproj" />
+    <ProjectReference Include="..\Citaty.Data\Quotes.Data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,8 @@
-﻿using Citaty.Data.GraphQL.Models;
-using Citaty.Data.Repositories.Quotes;
-using GraphQL.Types;
+﻿using GraphQL.Types;
+using Quotes.Data.GraphQL.Models;
+using Quotes.Data.Repositories.Quotes;
 
-namespace Citaty.Data.Queries
+namespace Quotes.Data.Queries
 {
     public class QuoteQuery : ObjectGraphType 
     {

@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Citaty.Core.Services;
 
-namespace Citaty.Core.Infrastructure
+namespace Quotes.Core.Infrastructure
 {
     public class CoreModule : Module
     {

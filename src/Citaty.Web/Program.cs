@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Citaty.Api
+namespace Quotes.Api
 {
     public class Program
     {

@@ -1,8 +1,8 @@
 ﻿using Autofac;
-using Citaty.Data.Queries;
-using Citaty.Data.Repositories.Quotes;
+using Quotes.Data.Queries;
+using Quotes.Data.Repositories.Quotes;
 
-namespace Citaty.Data.Infrastructure
+namespace Quotes.Data.Infrastructure
 {
     public class DataModule : Module
     {
