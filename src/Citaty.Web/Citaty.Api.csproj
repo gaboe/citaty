@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Citaty.Core\Citaty.Core.csproj" />
     <ProjectReference Include="..\Citaty.Data.GraphQL\Citaty.Data.GraphQL.csproj" />
+    <ProjectReference Include="..\Citaty.Data\Citaty.Data.csproj" />
   </ItemGroup>
 
 </Project>

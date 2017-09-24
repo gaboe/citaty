@@ -1,4 +1,4 @@
-﻿namespace Citaty.Data.GraphQL.Queries
+﻿namespace Citaty.Data.Queries
 {
     public class GraphQLQuery
     {

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Citaty.Data.GraphQL.Queries;
+using Citaty.Data.Queries;
 using GraphQL;
 using GraphQL.Types;
 
@@ -10,10 +10,17 @@ namespace Citaty.Api.Controllers
     [Route("api/Quotes")]
     public class QuotesController : Controller
     {
+        private readonly QuoteQuery _quoteQueries;
+
+        public QuotesController(QuoteQuery quoteQueries)
+        {
+            _quoteQueries = quoteQueries;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] GraphQLQuery query)
         {
-            var schema = new Schema { Query = new QuotesQueries() };
+            var schema = new Schema { Query = _quoteQueries };
 
             var result = await new DocumentExecuter().ExecuteAsync(_ =>
             {

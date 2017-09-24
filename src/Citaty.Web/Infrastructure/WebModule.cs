@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Citaty.Core.Infrastructure;
+using Citaty.Data.Infrastructure;
 
 namespace Citaty.Api.Infrastructure
 {
@@ -8,6 +9,7 @@ namespace Citaty.Api.Infrastructure
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule(new CoreModule());
+            builder.RegisterModule(new DataModule());
         }
     }
 }

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Citaty.Data.Domain\Citaty.Data.Domain.csproj" />
+    <ProjectReference Include="..\Citaty.Data.GraphQL\Citaty.Data.GraphQL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="GraphQL">
+      <HintPath>C:\Users\gabo\.nuget\packages\graphql\0.17.3\lib\netstandard1.1\GraphQL.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citaty.Data.Domain", "src\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citaty.Data.GraphQL", "src\Citaty.Data.GraphQL\Citaty.Data.GraphQL.csproj", "{D08181A0-8489-4429-BD1B-7C1762C16E77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Citaty.Data", "src\Citaty.Data\Citaty.Data.csproj", "{FE1BC39A-EF8D-421D-B4D6-43425CB3CC02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D08181A0-8489-4429-BD1B-7C1762C16E77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D08181A0-8489-4429-BD1B-7C1762C16E77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D08181A0-8489-4429-BD1B-7C1762C16E77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE1BC39A-EF8D-421D-B4D6-43425CB3CC02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE1BC39A-EF8D-421D-B4D6-43425CB3CC02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE1BC39A-EF8D-421D-B4D6-43425CB3CC02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE1BC39A-EF8D-421D-B4D6-43425CB3CC02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
