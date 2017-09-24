@@ -1,5 +1,4 @@
 ﻿using Autofac.Extensions.DependencyInjection;
-using Citaty.Web;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 

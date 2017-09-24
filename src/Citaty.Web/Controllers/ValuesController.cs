@@ -1,9 +1,10 @@
-﻿using Citaty.Core.Services;
+﻿using System.Collections.Generic;
+using Citaty.Core.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+
 //using Citaty.Core.Services;
 
-namespace Citaty.Web.Controllers
+namespace Citaty.Api.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
