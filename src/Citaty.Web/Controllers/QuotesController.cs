@@ -15,7 +15,10 @@ namespace Quotes.Api.Controllers
         private readonly QuoteQuery _quoteQueries;
         private readonly ILogger _logger;
 
-        public QuotesController(QuoteQuery quoteQueries, ILogger logger)
+        public QuotesController(
+            QuoteQuery quoteQueries
+            , ILogger<QuotesController> logger
+            )
         {
             _quoteQueries = quoteQueries;
             _logger = logger;

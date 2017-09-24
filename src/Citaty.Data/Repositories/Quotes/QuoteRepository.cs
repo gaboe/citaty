@@ -5,9 +5,13 @@ using Quotes.Data.Domain.Models;
 
 namespace Quotes.Data.Repositories.Quotes
 {
-    internal class QuoteRepository : BaseRepository<Quote,ObjectId>, IQuoteRepository
+    internal class QuoteRepository : BaseRepository<Quote,ObjectId,QuoteRepository>, IQuoteRepository
     {
-        public QuoteRepository(ILogger logger, IBaseContextProvider<Quote> contextProvider) : base(logger, contextProvider)
+        public QuoteRepository(
+            ILogger<QuoteRepository> logger,
+            IBaseContextProvider<Quote> contextProvider) : base(
+                logger,
+                contextProvider)
         {
         }
     }

@@ -10,13 +10,15 @@ using TypeExtensions = Quotes.Data.Utils.TypeExtensions;
 
 namespace Quotes.Data.Repositories
 {
-    public abstract class BaseRepository<TEntity, TKey> : IBaseRepository<TEntity, TKey>
+    public abstract class BaseRepository<TEntity, TKey, TRepository> : IBaseRepository<TEntity, TKey>
         where TEntity : class, IEntity<TKey>, new()
     {
         protected readonly ILogger Logger;
         protected readonly IMongoCollection<TEntity> Collection;
 
-        protected BaseRepository(ILogger logger, IBaseContextProvider<TEntity> contextProvider)
+        protected BaseRepository(
+            ILogger<TRepository> logger,
+            IBaseContextProvider<TEntity> contextProvider)
         {
             Logger = logger;
             Collection = contextProvider.GetContext();
@@ -24,27 +26,27 @@ namespace Quotes.Data.Repositories
 
         public virtual Task<List<TEntity>> GetAll()
         {
-            Logger.LogInformation($"Get all ${nameof(TEntity)}");
+            //Logger.LogInformation($"Get all ${nameof(TEntity)}");
             return Collection.FindAsync(x => x.ID != null).Result.ToListAsync();
         }
 
         public virtual Task<TEntity> Get(string id)
         {
-            Logger.LogInformation($"Get ${nameof(TEntity)} with id = ${id}");
+            //Logger.LogInformation($"Get ${nameof(TEntity)} with id = ${id}");
             var objectID = TypeExtensions.Parse<ObjectId>(id);
             return Collection.FindAsync(x => x.ID.Equals(objectID)).Result.SingleAsync();
         }
 
         public virtual Task<TEntity> Get(TKey id)
         {
-            Logger.LogInformation($"Get ${nameof(TEntity)} with id = ${id}");
+            //Logger.LogInformation($"Get ${nameof(TEntity)} with id = ${id}");
             return Collection.FindAsync(x => x.ID.Equals(id)).Result.SingleAsync();
         }
 
         public virtual TEntity Add(TEntity entity)
         {
             Collection.InsertOne(entity);
-            Logger.LogInformation($"Add entity with id = ${entity.ID}");
+            //Logger.LogInformation($"Add entity with id = ${entity.ID}");
             return entity;
         }
 
@@ -52,18 +54,18 @@ namespace Quotes.Data.Repositories
         {
             var enumerable = entities as IList<TEntity> ?? entities.ToList();
             Collection.InsertMany(enumerable);
-            Logger.LogInformation($"Add range of entities with ids = ${enumerable.Select(x => x.ID)}");
+            //Logger.LogInformation($"Add range of entities with ids = ${enumerable.Select(x => x.ID)}");
         }
 
         public virtual void Delete(TKey id)
         {
-            Logger.LogInformation($"Delete entity with id = ${id}");
+            //Logger.LogInformation($"Delete entity with id = ${id}");
             Collection.DeleteOne(e => e.ID.Equals(id));
         }
 
         public virtual void Update(TEntity entity, UpdateDefinition<TEntity> updateDefinition)
         {
-            Logger.LogInformation($"Update entity fields ${updateDefinition}");
+            //Logger.LogInformation($"Update entity fields ${updateDefinition}");
             Collection.UpdateOneAsync(x => x.ID.Equals(entity.ID), updateDefinition);
         }
     }
