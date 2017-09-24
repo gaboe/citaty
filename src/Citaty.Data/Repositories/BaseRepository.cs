@@ -41,8 +41,9 @@ namespace Quotes.Data.Repositories
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
-            Collection.InsertMany(entities);
-            Logger.LogInformation($"Add range of entities with ids = ${entities.Select(x => x.ID)}");
+            var enumerable = entities as IList<TEntity> ?? entities.ToList();
+            Collection.InsertMany(enumerable);
+            Logger.LogInformation($"Add range of entities with ids = ${enumerable.Select(x => x.ID)}");
         }
 
         public virtual void Delete(TKey id)
