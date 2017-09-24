@@ -1,6 +1,8 @@
 ﻿using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Citaty.Core.Services;
+using Citaty.Web.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +24,7 @@ namespace Citaty.Web
         {
             services.AddMvc();
             var builder = new ContainerBuilder();
+            builder.RegisterModule(new WebModule());
             builder.Populate(services);
             var container = builder.Build();
             //Create the IServiceProvider based on the container.

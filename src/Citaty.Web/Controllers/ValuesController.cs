@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Citaty.Core.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 //using Citaty.Core.Services;
 
 namespace Citaty.Web.Controllers
@@ -10,18 +8,18 @@ namespace Citaty.Web.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        //private readonly IValueService _valueService;
+        private readonly IValueService _valueService;
 
-        //public ValuesController(IValueService valueService)
-        //{
-        //    _valueService = valueService;
-        //}
+        public ValuesController(IValueService valueService)
+        {
+            _valueService = valueService;
+        }
 
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _valueService.GetValues();
         }
 
         // GET api/values/5
