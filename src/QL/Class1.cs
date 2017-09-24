@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Citaty.Data.GraphQL
+namespace QL
 {
     public class Class1
     {

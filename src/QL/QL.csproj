@@ -1,15 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="GraphQL" Version="0.17.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Citaty.Data.Domain\Citaty.Data.Domain.csproj" />
   </ItemGroup>
 
 </Project>
