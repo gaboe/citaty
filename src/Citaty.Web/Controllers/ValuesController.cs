@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+//using Citaty.Core.Services;
 
 namespace Citaty.Web.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        //private readonly IValueService _valueService;
+
+        //public ValuesController(IValueService valueService)
+        //{
+        //    _valueService = valueService;
+        //}
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
