@@ -1,9 +1,9 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using Quotes.Data.Context;
 using Quotes.Data.Domain.Models;
 using System.Threading.Tasks;
-using MongoDB.Bson;
-using Microsoft.Extensions.Logging;
 
 namespace Quotes.Data.Repositories.Quotes
 {
@@ -22,7 +22,8 @@ namespace Quotes.Data.Repositories.Quotes
         {
             _logger.LogInformation($"Get quote with id {id}");
             var objectID = ObjectId.Parse(id);
-            return _quotesCollection.FindAsync(q => q.QuoteID.Equals(objectID)).Result.SingleAsync();
+            
+            return _quotesCollection.FindAsync(q => q.ID.Equals(objectID)).Result.SingleAsync();
         }
     }
 }

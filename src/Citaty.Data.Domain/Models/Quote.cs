@@ -5,16 +5,16 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Quotes.Data.Domain.Models
 {
     [DataContract]
-    public class Quote
+    public class Quote : IEntity<ObjectId>
     {
         [DataMember]
         [BsonId]
-        public ObjectId QuoteID { get; set; }
+        public ObjectId ID { get; set; }
 
         [DataMember]
         [BsonElement("title")]
         public string Title { get; set; }
 
-        public string Id => QuoteID.ToString();
+        public string QuoteID => ID.ToString();
     }
 }
