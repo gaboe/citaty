@@ -5,6 +5,6 @@ namespace Quotes.Data.Repositories.Quotes
 {
     public interface IQuoteRepository
     {
-        Task<Quote> GetByID(int id);
+        Task<Quote> GetByID(string id);
     }
 }

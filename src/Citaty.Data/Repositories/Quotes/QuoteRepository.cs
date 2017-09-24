@@ -1,18 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MongoDB.Driver;
+using Quotes.Data.Context;
 using Quotes.Data.Domain.Models;
+using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace Quotes.Data.Repositories.Quotes
 {
     internal class QuoteRepository : IQuoteRepository
     {
-        private readonly IList<Quote> _qoute
-            = new List<Quote> {new Quote {QuoteID = 1, Title = "Ahoj"}};
+        private readonly IMongoCollection<Quote> _quotesCollection;
 
-        public Task<Quote> GetByID(int id)
+        public QuoteRepository(IQuotesContextProvider contextProvider)
         {
-            return Task.FromResult(_qoute.Single(x => x.QuoteID == id));
+            _quotesCollection = contextProvider.GetContext();
+        }
+
+        public Task<Quote> GetByID(string id)
+        {
+            var objectID = ObjectId.Parse(id);
+            return _quotesCollection.FindAsync(q => q.QuoteID.Equals(objectID)).Result.SingleAsync();
         }
     }
 }
