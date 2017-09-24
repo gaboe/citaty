@@ -19,6 +19,9 @@
     <Reference Include="GraphQL">
       <HintPath>C:\Users\gabo\.nuget\packages\graphql\0.17.3\lib\netstandard1.1\GraphQL.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.logging.abstractions\2.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
