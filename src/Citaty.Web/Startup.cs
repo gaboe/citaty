@@ -38,6 +38,7 @@ namespace Quotes.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }
