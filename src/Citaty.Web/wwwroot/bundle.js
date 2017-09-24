@@ -78,8 +78,7 @@
 	    });
 	}
 
-	_reactDom2['default'].render(_react2['default'].createElement(_graphiql2['default'], {
-	    fetcher: graphQLFetcher }), document.getElementById('app'));
+	_reactDom2['default'].render(_react2['default'].createElement(_graphiql2['default'], { fetcher: graphQLFetcher }), document.getElementById('app'));
 
 /***/ }),
 /* 1 */

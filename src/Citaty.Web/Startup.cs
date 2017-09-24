@@ -40,6 +40,7 @@ namespace Quotes.Api
 
             app.UseStaticFiles();
             app.UseMvc();
+            app.UseGraphiQl();
         }
     }
 }
