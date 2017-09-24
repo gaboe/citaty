@@ -1,29 +1,14 @@
 ﻿using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
-using MongoDB.Driver;
 using Quotes.Data.Context;
 using Quotes.Data.Domain.Models;
-using System.Threading.Tasks;
 
 namespace Quotes.Data.Repositories.Quotes
 {
-    internal class QuoteRepository : IQuoteRepository
+    internal class QuoteRepository : BaseRepository<Quote,ObjectId>, IQuoteRepository
     {
-        private readonly IMongoCollection<Quote> _quotesCollection;
-        private readonly ILogger _logger;
-
-        public QuoteRepository(IQuotesContextProvider contextProvider, ILogger logger)
+        public QuoteRepository(ILogger logger, IBaseContextProvider<Quote> contextProvider) : base(logger, contextProvider)
         {
-            _logger = logger;
-            _quotesCollection = contextProvider.GetContext();
-        }
-
-        public Task<Quote> GetByID(string id)
-        {
-            _logger.LogInformation($"Get quote with id {id}");
-            var objectID = ObjectId.Parse(id);
-            
-            return _quotesCollection.FindAsync(q => q.ID.Equals(objectID)).Result.SingleAsync();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Quotes.Data.Queries
         {
             Field<QuoteType>(
                 "quote",
-                resolve: context => quoteRepository.GetByID("59c7a24ae651d381070f54b5")
+                resolve: context => quoteRepository.Get("59c7a24ae651d381070f54b5")
             );
         }
     }

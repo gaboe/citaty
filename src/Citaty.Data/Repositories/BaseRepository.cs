@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Quotes.Data.Context;
 using Quotes.Data.Domain;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TypeExtensions = Quotes.Data.Utils.TypeExtensions;
 
 namespace Quotes.Data.Repositories
 {
@@ -24,6 +26,13 @@ namespace Quotes.Data.Repositories
         {
             Logger.LogInformation($"Get all ${nameof(TEntity)}");
             return Collection.FindAsync(x => x.ID != null).Result.ToListAsync();
+        }
+
+        public virtual Task<TEntity> Get(string id)
+        {
+            Logger.LogInformation($"Get ${nameof(TEntity)} with id = ${id}");
+            var objectID = TypeExtensions.Parse<ObjectId>(id);
+            return Collection.FindAsync(x => x.ID.Equals(objectID)).Result.SingleAsync();
         }
 
         public virtual Task<TEntity> Get(TKey id)

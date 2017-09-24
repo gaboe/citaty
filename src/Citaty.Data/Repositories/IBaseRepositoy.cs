@@ -8,6 +8,7 @@ namespace Quotes.Data.Repositories
     {
         Task<List<TEntity>> GetAll();
         Task<TEntity> Get(TKey id);
+        Task<TEntity> Get(string id);
         TEntity Add(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);
         void Delete(TKey id);
