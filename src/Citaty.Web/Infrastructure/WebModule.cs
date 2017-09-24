@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Citaty.Core.Infrastructure;
 
-namespace Citaty.Web.Infrastructure
+namespace Citaty.Api.Infrastructure
 {
     public class WebModule : Module
     {

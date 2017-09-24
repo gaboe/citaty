@@ -1,14 +1,13 @@
 ﻿using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Citaty.Core.Services;
-using Citaty.Web.Infrastructure;
+using Citaty.Api.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Citaty.Web
+namespace Citaty.Api
 {
     public class Startup
     {

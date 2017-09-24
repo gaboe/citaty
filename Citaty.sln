@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citaty.Web", "src\Citaty.Web\Citaty.Web.csproj", "{35CB969B-B801-47C0-8DDD-7896E8B8B540}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citaty.Api", "src\Citaty.Web\Citaty.Api.csproj", "{35CB969B-B801-47C0-8DDD-7896E8B8B540}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citaty.Core", "src\Citaty.Core\Citaty.Core.csproj", "{17A999C8-82D6-43B7-9CB3-081ED7E11287}"
 EndProject

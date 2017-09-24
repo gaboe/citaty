@@ -1,8 +1,9 @@
 ﻿using Autofac.Extensions.DependencyInjection;
+using Citaty.Web;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Citaty.Web
+namespace Citaty.Api
 {
     public class Program
     {
