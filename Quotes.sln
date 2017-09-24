@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Data.Domain", "src\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Data.GraphQL", "src\Citaty.Data.GraphQL\Quotes.Data.GraphQL.csproj", "{D08181A0-8489-4429-BD1B-7C1762C16E77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quotes.Data", "src\Citaty.Data\Quotes.Data.csproj", "{FE1BC39A-EF8D-421D-B4D6-43425CB3CC02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Data", "src\Citaty.Data\Quotes.Data.csproj", "{FE1BC39A-EF8D-421D-B4D6-43425CB3CC02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quotes.Data.Tests", "tests\Quotes.Data.Tests\Quotes.Data.Tests.csproj", "{67D8F694-EFFA-4E32-AFC0-D26EF2C5EB15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +43,16 @@ Global
 		{FE1BC39A-EF8D-421D-B4D6-43425CB3CC02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE1BC39A-EF8D-421D-B4D6-43425CB3CC02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE1BC39A-EF8D-421D-B4D6-43425CB3CC02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67D8F694-EFFA-4E32-AFC0-D26EF2C5EB15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67D8F694-EFFA-4E32-AFC0-D26EF2C5EB15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67D8F694-EFFA-4E32-AFC0-D26EF2C5EB15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67D8F694-EFFA-4E32-AFC0-D26EF2C5EB15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67D8F694-EFFA-4E32-AFC0-D26EF2C5EB15} = {3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5825795-1229-4E50-B86D-9FC1EE9918B9}
