@@ -9,10 +9,10 @@ namespace Quotes.Data.Utils
         {
             var t = typeof(T);
             // Attempt to execute the Parse method on the type if it exists. 
-            var parse = t.GetMethod("Parse", new Type[] { typeof(string) });
+            var parse = t.GetMethod("Parse", new[] { typeof(string) });
 
             if (parse == null)
-                throw new MethodAccessException(String.Format("The Parse method does not exist for type {0}.", t.Name));
+                throw new MethodAccessException($"The Parse method does not exist for type {t.Name}.");
             try
             {
                 return (T)parse.Invoke(null, new object[] { s });

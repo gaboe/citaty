@@ -1,6 +1,4 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
-using Quotes.Data.Domain;
+﻿using MongoDB.Driver;
 
 namespace Quotes.Data.Context
 {

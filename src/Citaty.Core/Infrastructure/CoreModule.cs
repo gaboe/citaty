@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using Citaty.Core.Services;
 
 namespace Quotes.Core.Infrastructure
 {
@@ -7,7 +6,6 @@ namespace Quotes.Core.Infrastructure
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ValueService>().As<IValueService>();
         }
     }
 }

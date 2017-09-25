@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Quotes.Data.Context;
 using Quotes.Data.Queries;
-using Quotes.Data.Repositories;
 using Quotes.Data.Repositories.Quotes;
 using Quotes.Data.Utils;
 
