@@ -5,14 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Citaty.Core\Quotes.Core.csproj" />
-    <ProjectReference Include="..\..\src\Citaty.Data\Quotes.Data.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
-      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.logging.abstractions\2.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\src\Citaty.Core\Quotes.Core.csproj" />
+    <ProjectReference Include="..\..\src\Citaty.Data\Quotes.Data.csproj" />
   </ItemGroup>
 
 </Project>
