@@ -1,7 +1,4 @@
-﻿using Autofac;
-using Microsoft.Extensions.Logging;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Data.Repositories.Quotes;
 using Quotes.Testing.Infrastructure;
 
@@ -10,7 +7,7 @@ namespace Quotes.Tests.Data
     [TestClass]
     public class QuoteRepositoryTest
     {
-        //[TestMethod]
+        [TestMethod]
         public void GetQuoteTest()
         {
             using (var resolver = new TestResolver())

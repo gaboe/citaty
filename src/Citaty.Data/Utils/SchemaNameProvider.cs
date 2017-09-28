@@ -7,9 +7,9 @@ namespace Quotes.Data.Utils
     {
         public string GetSchemaName()
         {
-            return nameof(TEntity).EndsWith("s")
-                ? $"{nameof(TEntity).ToLower()}es"
-                : $"{nameof(TEntity).ToLower()}s";
+            return typeof(TEntity).Name.EndsWith("s")
+                ? $"{typeof(TEntity).Name.ToLower()}es"
+                : $"{typeof(TEntity).Name.ToLower()}s";
         }
     }
 }

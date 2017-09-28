@@ -27,7 +27,7 @@ namespace Quotes.Data.Repositories
         public virtual Task<List<TEntity>> GetAll()
         {
             //Logger.LogInformation($"Get all ${nameof(TEntity)}");
-            return Collection.FindAsync(x => x.ID != null).Result.ToListAsync();
+            return Collection.AsQueryable().ToListAsync();
         }
 
         public virtual Task<TEntity> Get(string id)
