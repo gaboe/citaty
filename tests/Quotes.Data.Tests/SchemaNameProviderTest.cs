@@ -1,10 +1,5 @@
-﻿using System;
-using System.Dynamic;
-using System.Reflection;
-using System.Reflection.Emit;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MongoDB.Bson;
-using Moq;
 using Quotes.Data.Domain;
 using Quotes.Data.Domain.Models;
 using Quotes.Data.Utils;

@@ -1,10 +1,6 @@
-﻿using MongoDB.Bson;
-using Quotes.Data.Domain;
-
-namespace Quotes.Data.Utils
+﻿namespace Quotes.Data.Utils
 {
-    public interface ISchemaNameProvider<TEntity>
-        where TEntity : IEntity<ObjectId>
+    public interface ISchemaNameProvider<TEntity> where TEntity : class
     {
         string GetSchemaName();
     }
