@@ -7,7 +7,7 @@ namespace Quotes.Data.Repositories.Quotes
 {
     internal class QuoteRepository : BaseRepository<Quote,ObjectId,QuoteRepository>, IQuoteRepository
     {
-        public QuoteRepository(ILogger<QuoteRepository> logger,IBaseContextProvider<Quote> contextProvider)
+        public QuoteRepository(ILogger<QuoteRepository> logger,IDbContextProvider<Quote> contextProvider)
             : base(logger,contextProvider)
         {}
     }

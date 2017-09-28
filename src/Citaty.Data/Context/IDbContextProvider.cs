@@ -2,7 +2,7 @@
 
 namespace Quotes.Data.Context
 {
-    public interface IBaseContextProvider<TEntity>
+    public interface IDbContextProvider<TEntity>
     {
         IMongoCollection<TEntity> GetContext();
     }

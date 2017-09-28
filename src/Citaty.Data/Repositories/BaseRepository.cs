@@ -18,7 +18,7 @@ namespace Quotes.Data.Repositories
 
         protected BaseRepository(
             ILogger<TRepository> logger,
-            IBaseContextProvider<TEntity> contextProvider)
+            IDbContextProvider<TEntity> contextProvider)
         {
             Logger = logger;
             Collection = contextProvider.GetContext();

@@ -2,7 +2,7 @@
 {
     public class DbConstants
     {
-        public const string DbName = "quotesDB";
+        public const string DbName = "quotesdb";
         public const string QuotesCollection = "quotes";
     }
 }

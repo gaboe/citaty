@@ -1,23 +1,27 @@
 ﻿using MongoDB.Driver;
-using Quotes.Data.Infrastructure;
 using Quotes.Data.Utils;
 
 namespace Quotes.Data.Context
 {
-    public class BaseContextProvider<TEntity> : IBaseContextProvider<TEntity>
+    public class DbContextProvider<TEntity> : IDbContextProvider<TEntity>
         where TEntity : class
     {
         private readonly ISchemaNameProvider<TEntity> _shemaNameProvider;
+        private readonly IDbConnectionFactory _dbConnectionFactory;
 
-        public BaseContextProvider(ISchemaNameProvider<TEntity> shemaNameProvider)
+        public DbContextProvider(
+            ISchemaNameProvider<TEntity> shemaNameProvider,
+            IDbConnectionFactory dbConnectionFactory)
         {
             _shemaNameProvider = shemaNameProvider;
+            _dbConnectionFactory = dbConnectionFactory;
         }
 
         public IMongoCollection<TEntity> GetContext()
         {
             var shema = _shemaNameProvider.GetSchemaName();
-            return new MongoClient().GetDatabase(DbConstants.DbName)
+            return _dbConnectionFactory
+                .GetConnection()
                 .GetCollection<TEntity>(shema);
         }
     }

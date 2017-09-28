@@ -10,12 +10,11 @@ namespace Quotes.Data.Infrastructure
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterGeneric(typeof(BaseContextProvider<>)).As(typeof(IBaseContextProvider<>));
+            builder.RegisterGeneric(typeof(DbContextProvider<>)).As(typeof(IDbContextProvider<>));
             builder.RegisterGeneric(typeof(SchemaNameProvider<>)).As(typeof(ISchemaNameProvider<>));
+            builder.RegisterType<DbConnectionFactory>().As<IDbConnectionFactory>();
 
             builder.RegisterType<QuoteRepository>().As<IQuoteRepository>();
-
-            builder.RegisterType<QuotesContextProvider>().As<IQuotesContextProvider>();
 
             builder.RegisterType<QuoteQuery>();
         }
