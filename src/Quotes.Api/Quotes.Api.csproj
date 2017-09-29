@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Citaty.Core\Quotes.Core.csproj" />
-    <ProjectReference Include="..\Citaty.Data.GraphQL\Quotes.Data.GraphQL.csproj" />
-    <ProjectReference Include="..\Citaty.Data\Quotes.Data.csproj" />
+    <ProjectReference Include="..\Quotes.Core\Quotes.Core.csproj" />
+    <ProjectReference Include="..\Quotes.Data.GraphQL\Quotes.Data.GraphQL.csproj" />
+    <ProjectReference Include="..\Quotes.Data\Quotes.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

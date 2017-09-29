@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Citaty.Data.Domain\Quotes.Data.Domain.csproj" />
-    <ProjectReference Include="..\Citaty.Data.GraphQL\Quotes.Data.GraphQL.csproj" />
+    <ProjectReference Include="..\Quotes.Data.Domain\Quotes.Data.Domain.csproj" />
+    <ProjectReference Include="..\Quotes.Data.GraphQL\Quotes.Data.GraphQL.csproj" />
   </ItemGroup>
 
 </Project>

@@ -13,7 +13,7 @@ namespace Quotes.Testing.Infrastructure
         {
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Path.GetFullPath("..\\..\\..\\..\\..\\src\\Citaty.Web"))
+                .SetBasePath(Path.GetFullPath("..\\..\\..\\..\\..\\src\\Quotes.Api"))
                 .AddJsonFile($"appsettings.{environment}.json")
                 .AddEnvironmentVariables();
             var c = configurationBuilder.Build();  
