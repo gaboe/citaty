@@ -1,11 +1,9 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using Autofac;
+﻿using Autofac;
 using Microsoft.Extensions.Configuration;
 using Quotes.Data.Domain.Settings;
 using Quotes.Data.Infrastructure;
-using Module = Autofac.Module;
+using System;
+using System.IO;
 
 namespace Quotes.Testing.Infrastructure
 {
@@ -14,11 +12,11 @@ namespace Quotes.Testing.Infrastructure
         protected override void Load(ContainerBuilder builder)
         {
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            var b = new ConfigurationBuilder()
+            var configurationBuilder = new ConfigurationBuilder()
                 .SetBasePath(Path.GetFullPath("..\\..\\..\\..\\..\\src\\Citaty.Web"))
                 .AddJsonFile($"appsettings.{environment}.json")
                 .AddEnvironmentVariables();
-            var c = b.Build();  
+            var c = configurationBuilder.Build();  
             var appConfig = c.GetSection("App").Get<AppSettings>();
 
             builder.RegisterModule(new DataModule(appConfig));
