@@ -5,9 +5,16 @@ namespace Quotes.Data.Context
 {
     internal class DbConnectionFactory : IDbConnectionFactory
     {
+        private readonly string _connectionString;
+
+        public DbConnectionFactory(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public IMongoDatabase GetConnection()
         {
-           return new MongoClient("mongodb://localhost:27017/quotesdb").GetDatabase(DbConstants.DbName);
+           return new MongoClient(_connectionString).GetDatabase(DbConstants.DbName);
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Quotes.Api.Infrastructure;
 using System;
+using Quotes.Data.Domain.Settings;
 
 namespace Quotes.Api
 {
@@ -24,7 +25,8 @@ namespace Quotes.Api
         {
             services.AddMvc();
             var builder = new ContainerBuilder();
-            builder.RegisterModule(new WebModule());
+            var appConfig = Configuration.GetSection("App").Get<AppSettings>();
+            builder.RegisterModule(new WebModule(appConfig));
             builder.Populate(services);
             var container = builder.Build();
             //Create the IServiceProvider based on the container.
