@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 
 namespace Quotes.Data.Utils
 {
@@ -8,7 +7,6 @@ namespace Quotes.Data.Utils
         public static T Parse<T>(string s)
         {
             var t = typeof(T);
-            // Attempt to execute the Parse method on the type if it exists. 
             var parse = t.GetMethod("Parse", new[] { typeof(string) });
 
             if (parse == null)

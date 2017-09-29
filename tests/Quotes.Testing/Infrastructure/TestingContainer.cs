@@ -16,8 +16,8 @@ namespace Quotes.Testing.Infrastructure
                 .SetBasePath(Path.GetFullPath("..\\..\\..\\..\\..\\src\\Quotes.Api"))
                 .AddJsonFile($"appsettings.{environment}.json")
                 .AddEnvironmentVariables();
-            var c = configurationBuilder.Build();  
-            var appConfig = c.GetSection("App").Get<AppSettings>();
+            var configurationRoot = configurationBuilder.Build();  
+            var appConfig = configurationRoot.GetSection("App").Get<AppSettings>();
 
             builder.RegisterModule(new DataModule(appConfig));
             builder.RegisterModule(new TestingModule());

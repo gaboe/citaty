@@ -8,7 +8,7 @@ namespace Quotes.Data.GraphQL.Models
         public QuoteType()
         {
             Field(x => x.QuoteID).Description("ID of Quote");
-            Field(x => x.Title).Description("The name of the Quoute");
+            Field(x => x.Title).Description("The name of the Quote");
         }
     }
 }

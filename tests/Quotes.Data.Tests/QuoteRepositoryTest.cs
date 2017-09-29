@@ -8,7 +8,7 @@ namespace Quotes.Tests.Data
     public class QuoteRepositoryTest
     {
         [TestMethod]
-        public void GetQuoteTest()
+        public void GetAllQuotesTest()
         {
             using (var resolver = new TestResolver())
             {
