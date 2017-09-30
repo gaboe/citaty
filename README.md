@@ -2,6 +2,8 @@
 TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
 
 # Getting Started
+Pre správne použitie appsettings.{eniroment}.json, je potreba mať správne nastavené [systémové premenné](https://citaty.visualstudio.com/Citaty/_wiki?pagePath=%2FCit%C3%A1ty). 
+
 email: quotes.development@gmail.com Quotes5656
 mongodb cloud: quotes.development Quotes5656
 
