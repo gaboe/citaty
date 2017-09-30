@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using GraphQL;
 using Quotes.Core.Infrastructure;
 using Quotes.Data.Infrastructure;
 using Quotes.Domain.Settings;
@@ -20,6 +21,9 @@ namespace Quotes.Api.Infrastructure
             builder.RegisterModule(new CoreModule());
             builder.RegisterModule(new DataModule(_appConfig));
             builder.RegisterModule(new GraphQLModule());
+
+            builder.RegisterType<DocumentExecuter>().As<IDocumentExecuter>();
+            builder.RegisterType<SchemaProvider>().As<ISchemaProvider>();
         }
     }
 }
