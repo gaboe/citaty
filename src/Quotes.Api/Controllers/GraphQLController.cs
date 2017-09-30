@@ -1,23 +1,23 @@
-﻿using System.Threading.Tasks;
-using GraphQL;
+﻿using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Quotes.Data.Queries;
+using System.Threading.Tasks;
 
 namespace Quotes.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/quotes")]
-    public class QuotesController : Controller
+    [Route("graphql")]
+    public class GraphQLController : Controller
     {
         private readonly QuoteQuery _quoteQueries;
         private readonly ILogger _logger;
 
-        public QuotesController(
+        public GraphQLController(
             QuoteQuery quoteQueries
-            , ILogger<QuotesController> logger
+            , ILogger<GraphQLController> logger
             )
         {
             _quoteQueries = quoteQueries;
