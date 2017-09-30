@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson;
 using Quotes.Data.Context;
-using Quotes.Data.Domain.Models;
+using Quotes.Domain.Models;
 
 namespace Quotes.Data.Repositories.Quotes
 {

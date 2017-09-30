@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Quotes.Data.Repositories.Channels;
+using Quotes.Domain.Models;
+using Quotes.Testing.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Quotes.Data.Domain.Models;
-using Quotes.Data.Repositories.Channels;
-using Quotes.Testing.Infrastructure;
 
 namespace Quotes.Tests.Data
 {

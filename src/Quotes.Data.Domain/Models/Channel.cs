@@ -1,9 +1,10 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using Quotes.Data.Domain;
 
-namespace Quotes.Data.Domain.Models
+namespace Quotes.Domain.Models
 {
     [DataContract]
     public class Channel : IEntity<ObjectId>

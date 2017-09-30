@@ -1,5 +1,5 @@
 ﻿using GraphQL.Types;
-using Quotes.Data.Domain.Models;
+using Quotes.Domain.Models;
 
 namespace Quotes.GraphQL.Types
 {

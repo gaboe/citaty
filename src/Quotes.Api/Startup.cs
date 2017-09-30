@@ -6,8 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Quotes.Api.Infrastructure;
-using Quotes.Data.Domain.Settings;
 using System;
+using Quotes.Domain.Settings;
 
 namespace Quotes.Api
 {

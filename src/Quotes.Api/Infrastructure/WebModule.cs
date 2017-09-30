@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Quotes.Core.Infrastructure;
-using Quotes.Data.Domain.Settings;
 using Quotes.Data.Infrastructure;
+using Quotes.Domain.Settings;
 using Quotes.GraphQL.Infrastructure;
 
 namespace Quotes.Api.Infrastructure

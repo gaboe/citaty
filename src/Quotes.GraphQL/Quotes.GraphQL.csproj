@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Quotes.Data.Domain\Quotes.Data.Domain.csproj" />
+    <ProjectReference Include="..\Quotes.Data.Domain\Quotes.Domain.csproj" />
     <ProjectReference Include="..\Quotes.Data\Quotes.Data.csproj" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GraphQL.Types;
-using Quotes.Data.Domain.Models;
+﻿using GraphQL.Types;
+using Quotes.Domain.Models;
 
 namespace Quotes.GraphQL.Types
 {

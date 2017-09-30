@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using Quotes.Data.Context;
-using Quotes.Data.Domain.Settings;
 using Quotes.Data.Repositories.Channels;
 using Quotes.Data.Repositories.Quotes;
 using Quotes.Data.Utils;
+using Quotes.Domain.Settings;
 
 namespace Quotes.Data.Infrastructure
 {

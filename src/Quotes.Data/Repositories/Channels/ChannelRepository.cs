@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using Quotes.Data.Context;
-using Quotes.Data.Domain.Models;
+using Quotes.Domain.Models;
 using System.Threading.Tasks;
 
 namespace Quotes.Data.Repositories.Channels

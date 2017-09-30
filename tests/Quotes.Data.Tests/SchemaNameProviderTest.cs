@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MongoDB.Bson;
 using Quotes.Data.Domain;
-using Quotes.Data.Domain.Models;
 using Quotes.Data.Utils;
+using Quotes.Domain.Models;
 using Quotes.Testing.Infrastructure;
 
 namespace Quotes.Tests.Data

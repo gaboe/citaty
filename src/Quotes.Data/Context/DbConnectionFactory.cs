@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver;
-using Quotes.Data.Domain.Settings;
+using Quotes.Domain.Settings;
 
 namespace Quotes.Data.Context
 {

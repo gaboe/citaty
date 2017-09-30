@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using MongoDB.Bson;
-using Quotes.Data.Domain.Models;
+﻿using MongoDB.Bson;
+using Quotes.Domain.Models;
+using System.Threading.Tasks;
 
 namespace Quotes.Data.Repositories.Channels
 {

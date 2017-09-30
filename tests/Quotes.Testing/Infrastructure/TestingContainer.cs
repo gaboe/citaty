@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Configuration;
-using Quotes.Data.Domain.Settings;
 using Quotes.Data.Infrastructure;
 using System;
 using System.IO;
+using Quotes.Domain.Settings;
 
 namespace Quotes.Testing.Infrastructure
 {

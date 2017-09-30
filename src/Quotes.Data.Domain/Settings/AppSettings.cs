@@ -1,4 +1,4 @@
-﻿namespace Quotes.Data.Domain.Settings
+﻿namespace Quotes.Domain.Settings
 {
     public class AppSettings
     {

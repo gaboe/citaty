@@ -1,8 +1,8 @@
 ﻿using Bogus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Data.Context;
-using Quotes.Data.Domain.Models;
 using Quotes.Data.Utils;
+using Quotes.Domain.Models;
 using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
 using System;

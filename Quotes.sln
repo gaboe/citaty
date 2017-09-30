@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Data", "src\Quotes.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Core", "src\Quotes.Core\Quotes.Core.csproj", "{07A5531A-FB6D-46E4-B1CE-B40F4F4FABFC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Data.Domain", "src\Quotes.Data.Domain\Quotes.Data.Domain.csproj", "{90304CE3-53AE-4947-928E-1D91E5D36E46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Domain", "src\Quotes.Data.Domain\Quotes.Domain.csproj", "{90304CE3-53AE-4947-928E-1D91E5D36E46}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.GraphQL", "src\Quotes.GraphQL\Quotes.GraphQL.csproj", "{3873BEFD-99E3-49CA-8750-18016A43AEED}"
 EndProject

@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using GraphQL.Types;
+﻿using GraphQL.Types;
+using Quotes.GraphQL.Types;
+using System.Linq;
 using Quotes.Data.Repositories.Channels;
 using Quotes.Data.Repositories.Quotes;
-using Quotes.GraphQL.Types;
 
 namespace Quotes.GraphQL.Queries
 {
