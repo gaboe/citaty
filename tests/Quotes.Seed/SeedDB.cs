@@ -16,8 +16,8 @@ namespace Quotes.Seed
         [TestMethod]
         public void TruncateAndSeed()
         {
-            if (!IsSeedingEnabled())
-                return;
+            //if (!IsSeedingEnabled())
+            //    return;
             Truncate();
             Seed();
         }
