@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using Quotes.Data.Context;
 using Quotes.Data.Domain;
@@ -10,17 +9,14 @@ using TypeExtensions = Quotes.Data.Utils.TypeExtensions;
 
 namespace Quotes.Data.Repositories
 {
-    public abstract class BaseRepository<TEntity, TKey, TRepository> : IBaseRepository<TEntity, TKey>
+    public abstract class BaseRepository<TEntity, TKey> : IBaseRepository<TEntity, TKey>
         where TEntity : class, IEntity<TKey>, new()
     {
-        protected readonly ILogger Logger;
         protected readonly IMongoCollection<TEntity> Collection;
 
         protected BaseRepository(
-            ILogger<TRepository> logger,
             IDbContextProvider<TEntity> contextProvider)
         {
-            Logger = logger;
             Collection = contextProvider.GetContext();
         }
 
