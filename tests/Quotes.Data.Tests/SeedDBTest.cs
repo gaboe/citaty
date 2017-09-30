@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using Bogus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Data.Context;
@@ -5,28 +6,19 @@ using Quotes.Data.Domain.Models;
 using Quotes.Data.Utils;
 using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
-using System;
-using System.Collections.Generic;
 
-namespace Quotes.Seed
+namespace Quotes.Tests.Data
 {
-    //[TestClass]
-    public class SeedDb
+    [TestClass]
+    public class SeedDbTest
     {
-        //[TestMethod]
+        [TestMethod]
         public void TruncateAndSeed()
         {
             //if (!IsSeedingEnabled())
             //    return;
             Truncate();
             Seed();
-        }
-
-        private static bool IsSeedingEnabled()
-        {
-            var environmentVariable = Environment.GetEnvironmentVariable("DB_SEEDING_ENABLED");
-            bool.TryParse(environmentVariable, out var isEnabled);
-            return isEnabled;
         }
 
         private static void Seed()
@@ -42,7 +34,7 @@ namespace Quotes.Seed
                 connection.GetCollection<Quote>(quoteSchema).InsertOne(new Quote
                 {
                     Title = TestingConstants.QuoteName,
-                    Content = new Faker().Lorem.Sentence(6,6)
+                    Content = new Faker().Lorem.Sentence(6, 6)
                 });
 
                 connection.GetCollection<Channel>(channelSchema).InsertOne(new Channel
@@ -60,7 +52,7 @@ namespace Quotes.Seed
             var quotes = new List<Quote>();
             for (var j = 0; j < i; j++)
             {
-                quotes.Add(new Quote {Title = faker.Lorem.Slug(2), Content = faker.Lorem.Sentence(15, 4)});
+                quotes.Add(new Quote { Title = faker.Lorem.Slug(2), Content = faker.Lorem.Sentence(15, 4) });
             }
             using (var resolver = new TestResolver())
             {
