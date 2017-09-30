@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Data.Domain", "src\Q
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Data.GraphQL", "src\Quotes.Data.GraphQL\Quotes.Data.GraphQL.csproj", "{3DCDC855-8009-4A3D-B567-D89D98F1E910}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quotes.Seed", "tests\Quotes.Seed\Quotes.Seed.csproj", "{DCE8171A-1295-4DD1-BBA1-2D13FD9B08E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{3DCDC855-8009-4A3D-B567-D89D98F1E910}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DCDC855-8009-4A3D-B567-D89D98F1E910}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DCDC855-8009-4A3D-B567-D89D98F1E910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCE8171A-1295-4DD1-BBA1-2D13FD9B08E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE8171A-1295-4DD1-BBA1-2D13FD9B08E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCE8171A-1295-4DD1-BBA1-2D13FD9B08E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCE8171A-1295-4DD1-BBA1-2D13FD9B08E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2128F67B-4A5C-4312-9E67-0DE6CB052C4D} = {3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}
 		{021EB57C-CE74-4775-A9E2-81B8C33AC4ED} = {3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}
+		{DCE8171A-1295-4DD1-BBA1-2D13FD9B08E7} = {3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5825795-1229-4E50-B86D-9FC1EE9918B9}

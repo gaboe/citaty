@@ -20,6 +20,6 @@ namespace Quotes.Data.Domain.Models
         [BsonElement("quotes")]
         public IEnumerable<Quote> Quotes { get; set; }
 
-        public string QuoteID => ID.ToString();
+        public string ChannelID => ID.ToString();
     }
 }
