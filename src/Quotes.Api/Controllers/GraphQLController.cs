@@ -3,7 +3,7 @@ using GraphQL.Types;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Quotes.Data.Queries;
+using Quotes.GraphQL.Queries;
 using System.Threading.Tasks;
 
 namespace Quotes.Api.Controllers
@@ -12,15 +12,15 @@ namespace Quotes.Api.Controllers
     [Route("graphql")]
     public class GraphQLController : Controller
     {
-        private readonly QuoteQuery _quoteQueries;
+        private readonly RootQuery _rootQuery;
         private readonly ILogger _logger;
 
         public GraphQLController(
-            QuoteQuery quoteQueries
+            RootQuery rootQuery
             , ILogger<GraphQLController> logger
-            )
+        )
         {
-            _quoteQueries = quoteQueries;
+            _rootQuery = rootQuery;
             _logger = logger;
         }
 
@@ -34,13 +34,12 @@ namespace Quotes.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] GraphQLQuery query)
         {
-            var schema = new Schema { Query = _quoteQueries };
+            var schema = new Schema {Query = _rootQuery};
 
             var result = await new DocumentExecuter().ExecuteAsync(_ =>
             {
                 _.Schema = schema;
                 _.Query = query.Query;
-
             }).ConfigureAwait(false);
 
             if (result.Errors?.Count > 0)

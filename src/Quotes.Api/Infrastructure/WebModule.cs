@@ -2,6 +2,7 @@
 using Quotes.Core.Infrastructure;
 using Quotes.Data.Domain.Settings;
 using Quotes.Data.Infrastructure;
+using Quotes.GraphQL.Infrastructure;
 
 namespace Quotes.Api.Infrastructure
 {
@@ -18,6 +19,7 @@ namespace Quotes.Api.Infrastructure
         {
             builder.RegisterModule(new CoreModule());
             builder.RegisterModule(new DataModule(_appConfig));
+            builder.RegisterModule(new GraphQLModule());
         }
     }
 }

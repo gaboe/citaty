@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Quotes.Data.Domain\Quotes.Data.Domain.csproj" />
-    <ProjectReference Include="..\Quotes.Data.GraphQL\Quotes.Data.GraphQL.csproj" />
   </ItemGroup>
 
 </Project>
