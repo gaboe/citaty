@@ -1,11 +1,12 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Quotes.Data.Domain.Models
 {
     [DataContract]
-    public class Quote : IEntity<ObjectId>
+    public class Channel : IEntity<ObjectId>
     {
         [DataMember]
         [BsonId]
@@ -16,8 +17,8 @@ namespace Quotes.Data.Domain.Models
         public string Title { get; set; }
 
         [DataMember]
-        [BsonElement("content")]
-        public string Content { get; set; }
+        [BsonElement("quotes")]
+        public IEnumerable<Quote> Quotes { get; set; }
 
         public string QuoteID => ID.ToString();
     }

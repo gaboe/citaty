@@ -22,6 +22,17 @@ namespace Quotes.Tests.Data
         }
 
         [TestMethod]
+        public void GetChannelsSchemaNameTest()
+        {
+            using (var resolver = new TestResolver())
+            {
+                var schemaProvider = resolver.Resolve<ISchemaNameProvider<Channel>>();
+                var name = schemaProvider.GetSchemaName();
+                Assert.AreEqual("channels", name);
+            }
+        }
+
+        [TestMethod]
         public void GetBusSchemaNameTest()
         {
             using (var resolver = new TestResolver())
