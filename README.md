@@ -4,7 +4,7 @@ TODO: Give a short introduction of your project. Let this section explain the ob
 # Getting Started
 Pre správne použitie appsettings.{eniroment}.json, je potreba mať správne nastavené [systémové premenné](https://citaty.visualstudio.com/Citaty/_wiki?pagePath=%2FCit%C3%A1ty). 
 
-Seed db: Nastaviť enviroment variable "DB_SEEDING_ENABLED" na true alebo zakomentovať kontrolu v prbom riadku
+Seed db: Nastaviť enviroment variable "DB_SEEDING_ENABLED" na true alebo alebo alebo upraviť TruncateAndSeed na TestMethod
 
 email: quotes.development@gmail.com Quotes5656
 mongodb cloud: quotes.development Quotes5656
