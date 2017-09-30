@@ -1,22 +1,21 @@
 ﻿using MongoDB.Driver;
-using Quotes.Data.Infrastructure;
+using Quotes.Data.Domain.Settings;
 
 namespace Quotes.Data.Context
 {
     internal class DbConnectionFactory : IDbConnectionFactory
     {
-        private readonly string _connectionString;
-        private readonly string _databaseName;
+        private readonly DatabaseSettings _databaseSettings;
 
-        public DbConnectionFactory(string connectionString, string databaseName)
+        public DbConnectionFactory(DatabaseSettings databaseSettings)
         {
-            _connectionString = connectionString;
-            _databaseName = databaseName;
+            _databaseSettings = databaseSettings;
         }
 
         public IMongoDatabase GetConnection()
         {
-           return new MongoClient(_connectionString).GetDatabase(_databaseName);
+            return new MongoClient(_databaseSettings.ConnectionString)
+                .GetDatabase(_databaseSettings.DatabaseName);
         }
     }
 }

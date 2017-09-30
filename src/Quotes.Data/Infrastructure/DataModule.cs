@@ -22,11 +22,7 @@ namespace Quotes.Data.Infrastructure
             builder.RegisterGeneric(typeof(SchemaNameProvider<>)).As(typeof(ISchemaNameProvider<>));
             builder.RegisterType<DbConnectionFactory>()
                 .As<IDbConnectionFactory>()
-                .WithParameters(new[]
-                {
-                    new NamedParameter("connectionString", _appConfig.DatabaseSettings.ConnectionString),
-                    new NamedParameter("databaseName", _appConfig.DatabaseSettings.DatabaseName)
-                });
+                .WithParameter("databaseSettings", _appConfig.DatabaseSettings);
 
             builder.RegisterType<QuoteRepository>().As<IQuoteRepository>();
 
