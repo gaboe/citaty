@@ -1,3 +1,4 @@
+using Bogus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Data.Context;
 using Quotes.Data.Domain.Models;
@@ -6,7 +7,6 @@ using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
 using System;
 using System.Collections.Generic;
-using Bogus;
 
 namespace Quotes.Seed
 {
@@ -42,7 +42,7 @@ namespace Quotes.Seed
                 connection.GetCollection<Quote>(quoteSchema).InsertOne(new Quote
                 {
                     Title = TestingConstants.QuoteName,
-                    Content = Guid.NewGuid().ToString()
+                    Content = new Faker().Lorem.Sentence(6,6)
                 });
 
                 connection.GetCollection<Channel>(channelSchema).InsertOne(new Channel
@@ -55,12 +55,12 @@ namespace Quotes.Seed
 
         private static IEnumerable<Quote> GetChannelQuotes(int i)
         {
-            var faker = new Faker("cz");
+            var faker = new Faker();
 
             var quotes = new List<Quote>();
             for (var j = 0; j < i; j++)
             {
-                quotes.Add(new Quote {Title = faker.Lorem.Sentence(15, 4), Content = Guid.NewGuid().ToString()});
+                quotes.Add(new Quote {Title = faker.Lorem.Slug(2), Content = faker.Lorem.Sentence(15, 4)});
             }
             using (var resolver = new TestResolver())
             {
