@@ -7,12 +7,12 @@ using Quotes.Data.Utils;
 using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
 
-namespace Quotes.Tests.Data
+namespace Quotes.Tests.Data.Seed
 {
-    [TestClass]
+    //[TestClass]
     public class SeedDbTest
     {
-        [TestMethod]
+        //[TestMethod]
         public void TruncateAndSeed()
         {
             //if (!IsSeedingEnabled())

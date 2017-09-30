@@ -10,10 +10,10 @@ using System.Collections.Generic;
 
 namespace Quotes.Seed
 {
-    //[TestClass]
-    public class SeedDb
+    [TestClass]
+    public class SeedDbTest
     {
-        //[TestMethod]
+        [TestMethod]
         public void TruncateAndSeed()
         {
             //if (!IsSeedingEnabled())
