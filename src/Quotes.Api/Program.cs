@@ -15,6 +15,7 @@ namespace Quotes.Api
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureServices(services => services.AddAutofac())
                 .UseStartup<Startup>()
+                .UseKestrel()
                 .Build();
     }
 }
