@@ -1,22 +1,23 @@
-﻿using System.Collections.Generic;
-using Bogus;
+﻿using Bogus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Data.Context;
 using Quotes.Data.Domain.Models;
 using Quotes.Data.Utils;
 using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
+using System;
+using System.Collections.Generic;
 
 namespace Quotes.Tests.Data.Seed
 {
-    //[TestClass]
-    public class SeedDbTest
+    [TestClass]
+    public class DbManager
     {
-        //[TestMethod]
-        public void TruncateAndSeed()
+        [AssemblyInitialize]
+        public static void TruncateAndSeed(TestContext context)
         {
-            //if (!IsSeedingEnabled())
-            //    return;
+            if (!IsSeedingEnabled())
+                return;
             Truncate();
             Seed();
         }
@@ -71,6 +72,13 @@ namespace Quotes.Tests.Data.Seed
                 connection.DropCollection(resolver.Resolve<ISchemaNameProvider<Quote>>().GetSchemaName());
                 connection.DropCollection(resolver.Resolve<ISchemaNameProvider<Channel>>().GetSchemaName());
             }
+        }
+
+        private static bool IsSeedingEnabled()
+        {
+            var environmentVariable = Environment.GetEnvironmentVariable("DB_SEEDING_ENABLED");
+            bool.TryParse(environmentVariable, out var isEnabled);
+            return isEnabled;
         }
     }
 }
