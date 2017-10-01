@@ -5,6 +5,7 @@ using Quotes.Testing.Infrastructure;
 using System;
 using System.Linq;
 using Quotes.Core.Services.Quotes;
+using Quotes.Data.Repositories.Quotes;
 
 namespace Quotes.Tests.Data
 {
@@ -35,7 +36,7 @@ namespace Quotes.Tests.Data
             {
                 //Arrange
                 var channelRepository = resolver.Resolve<IChannelRepository>();
-                var quoteService = resolver.Resolve<IQuoteService>();
+                var quoteService = resolver.Resolve<IQuoteRepository>();
                 var channelTitle = $"Integračné citáty číslo {Guid.NewGuid()}";
                 var quoteContent = $"Toto je integračný citát číslo: {Guid.NewGuid()}";
                 var qouteTitle = $"{Guid.NewGuid()}";

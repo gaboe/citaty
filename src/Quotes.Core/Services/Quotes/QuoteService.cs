@@ -17,7 +17,7 @@ namespace Quotes.Core.Services.Quotes
 
         public Task<List<Quote>> GetQuotesByChannelID(ObjectId channelID)
         {
-            return _quoteRepository.GetQuoteByChannelID(channelID);
+            return _quoteRepository.GetQuotesByChannelID(channelID);
         }
 
         public void Add(Quote quote)

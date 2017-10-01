@@ -13,7 +13,7 @@ namespace Quotes.Data.Repositories.Quotes
         {
         }
 
-        public Task<List<Quote>> GetQuoteByChannelID(ObjectId channelID)
+        public Task<List<Quote>> GetQuotesByChannelID(ObjectId channelID)
         {
             return Collection.FindAsync(x => x.ChannelID.Equals(channelID)).Result.ToListAsync();
         }

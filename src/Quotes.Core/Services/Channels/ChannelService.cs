@@ -7,7 +7,7 @@ namespace Quotes.Core.Services.Channels
 {
     public class ChannelService : IChannelService
     {
-        private  readonly IChannelRepository _channelRepository;
+        private readonly IChannelRepository _channelRepository;
 
         public ChannelService(IChannelRepository channelRepository)
         {
@@ -19,5 +19,14 @@ namespace Quotes.Core.Services.Channels
             return _channelRepository.GetAll();
         }
 
+        public void Add(Channel channel)
+        {
+            _channelRepository.Add(channel);
+        }
+
+        public Task<Channel> GetByTitle(string title)
+        {
+           return _channelRepository.GetByTitle(title);
+        }
     }
 }

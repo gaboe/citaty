@@ -1,4 +1,5 @@
-﻿using GraphQL.Types;
+﻿using GraphQL;
+using GraphQL.Types;
 using Quotes.Core.Services.Quotes;
 using Quotes.Domain.Models;
 
@@ -10,7 +11,7 @@ namespace Quotes.GraphQL.Types
         {
             Field(x => x.ChannelID).Description("ID of channel");
             Field<ListGraphType<QuoteType>>(
-                name: nameof(Channel.Quotes).ToLower(),
+                name: nameof(Channel.Quotes).ToCamelCase(),
                 description: "List of quotes",
                 resolve: c => quotesService.GetQuotesByChannelID(c.Source.ID));
             Field(x => x.Title).Description("Title of quotes");
