@@ -1,30 +1,30 @@
 ﻿using GraphQL.Types;
+using Quotes.Core.Services.Channels;
+using Quotes.Core.Services.Quotes;
 using Quotes.GraphQL.Types;
 using System.Linq;
-using Quotes.Data.Repositories.Channels;
-using Quotes.Data.Repositories.Quotes;
 
 namespace Quotes.GraphQL.Queries
 {
     public class RootQuery : ObjectGraphType
     {
-        public RootQuery(IQuoteRepository quoteRepository, IChannelRepository channelRepository)
+        public RootQuery(IQuoteService quoteService, IChannelService channelService)
         {
             Field<QuoteType>(
                 "quote",
-                resolve: context => quoteRepository.GetAll().Result.First()
+                resolve: context => quoteService.GetAll().Result.First()
             );
             Field<ListGraphType<QuoteType>>(
                 "quotes",
-                resolve: context => quoteRepository.GetAll()
+                resolve: context => quoteService.GetAll()
             );
             Field<ChannelType>(
                 "channel",
-                resolve: context => channelRepository.GetAll().Result.First()
+                resolve: context => channelService.GetAll().Result.First()
             );
             Field<ListGraphType<ChannelType>>(
                 "channels",
-                resolve: context => channelRepository.GetAll()
+                resolve: context => channelService.GetAll()
             );
         }
     }

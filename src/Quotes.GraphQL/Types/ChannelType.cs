@@ -9,9 +9,9 @@ namespace Quotes.GraphQL.Types
         public ChannelType(IQuoteService quotesService)
         {
             Field(x => x.ChannelID).Description("ID of channel");
-            //Field(x => x.Quotes, true, typeof(ListGraphType<QuoteType>)).Description("Enumerable of quotes");
             Field<ListGraphType<QuoteType>>(
-                nameof(Channel.Quotes).ToLower(),
+                name: nameof(Channel.Quotes).ToLower(),
+                description: "List of quotes",
                 resolve: c => quotesService.GetQuotesByChannelID(c.Source.ID));
             Field(x => x.Title).Description("Title of quotes");
         }

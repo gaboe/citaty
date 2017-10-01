@@ -12,6 +12,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Quotes.Core\Quotes.Core.csproj" />
     <ProjectReference Include="..\Quotes.Data.Domain\Quotes.Domain.csproj" />
-    <ProjectReference Include="..\Quotes.Data\Quotes.Data.csproj" />
   </ItemGroup>
 </Project>

@@ -24,5 +24,10 @@ namespace Quotes.Core.Services.Quotes
         {
             _quoteRepository.Add(quote);
         }
+
+        public Task<List<Quote>> GetAll()
+        {
+            return _quoteRepository.GetAll();
+        }
     }
 }
