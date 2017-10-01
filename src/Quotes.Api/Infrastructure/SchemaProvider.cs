@@ -16,7 +16,7 @@ namespace Quotes.Api.Infrastructure
         {
             return new Schema
             {
-                Query = _rootQuery
+                Query = _rootQuery,
             };
         }
     }

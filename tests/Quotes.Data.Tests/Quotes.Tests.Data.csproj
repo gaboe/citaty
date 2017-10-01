@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Quotes.Api\Quotes.Api.csproj" />
     <ProjectReference Include="..\..\src\Quotes.Data\Quotes.Data.csproj" />
     <ProjectReference Include="..\Quotes.Testing\Quotes.Testing.csproj" />
   </ItemGroup>

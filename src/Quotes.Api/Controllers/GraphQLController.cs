@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Quotes.Api.Infrastructure;
 using Quotes.GraphQL.Queries;
 using System.Threading.Tasks;
+using Quotes.GraphQL;
 
 namespace Quotes.Api.Controllers
 {
@@ -15,11 +16,11 @@ namespace Quotes.Api.Controllers
         private readonly IDocumentExecuter _documentExecuter;
 
         public GraphQLController(
-            ISchemaProvider schemaProvider,
+            ISchema schema,
             IDocumentExecuter documentExecuter
         )
         {
-            _schema = schemaProvider.GetRootSchema();
+            _schema = schema;
             _documentExecuter = documentExecuter;
         }
 
