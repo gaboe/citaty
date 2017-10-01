@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Domain", "src\Quotes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.GraphQL", "src\Quotes.GraphQL\Quotes.GraphQL.csproj", "{3873BEFD-99E3-49CA-8750-18016A43AEED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quotes.Tests.GraphQL", "tests\Quotes.Tests.GraphQL\Quotes.Tests.GraphQL.csproj", "{32A42EFA-C311-4300-A01B-E755C40C74B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{3873BEFD-99E3-49CA-8750-18016A43AEED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3873BEFD-99E3-49CA-8750-18016A43AEED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3873BEFD-99E3-49CA-8750-18016A43AEED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32A42EFA-C311-4300-A01B-E755C40C74B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32A42EFA-C311-4300-A01B-E755C40C74B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32A42EFA-C311-4300-A01B-E755C40C74B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32A42EFA-C311-4300-A01B-E755C40C74B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2128F67B-4A5C-4312-9E67-0DE6CB052C4D} = {3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}
 		{021EB57C-CE74-4775-A9E2-81B8C33AC4ED} = {3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}
+		{32A42EFA-C311-4300-A01B-E755C40C74B9} = {3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5825795-1229-4E50-B86D-9FC1EE9918B9}
