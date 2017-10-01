@@ -7,6 +7,7 @@ using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
 using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
 
 namespace Quotes.Tests.Data.Seed
 {
@@ -38,22 +39,28 @@ namespace Quotes.Tests.Data.Seed
                     Content = new Faker().Lorem.Sentence(6, 6)
                 });
 
-                connection.GetCollection<Channel>(channelSchema).InsertOne(new Channel
+                var channel = new Channel
                 {
                     Title = TestingConstants.ChannelTitle,
-                    Quotes = GetChannelQuotes(1_000)
-                });
+                };
+                connection.GetCollection<Channel>(channelSchema).InsertOne(channel);
+                GetChannelQuotes(channel.ID, 1_000);
             }
         }
 
-        private static IEnumerable<Quote> GetChannelQuotes(int i)
+        private static IEnumerable<Quote> GetChannelQuotes(ObjectId channelId, int count)
         {
             var faker = new Faker();
 
             var quotes = new List<Quote>();
-            for (var j = 0; j < i; j++)
+            for (var j = 0; j < count; j++)
             {
-                quotes.Add(new Quote { Title = faker.Lorem.Slug(2), Content = faker.Lorem.Sentence(15, 4) });
+                quotes.Add(new Quote
+                {
+                    ChannelID = channelId,
+                    Title = faker.Lorem.Slug(2),
+                    Content = faker.Lorem.Sentence(15, 4)
+                });
             }
             using (var resolver = new TestResolver())
             {

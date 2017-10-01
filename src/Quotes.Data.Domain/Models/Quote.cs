@@ -1,7 +1,7 @@
-﻿using System.Runtime.Serialization;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Quotes.Data.Domain;
+using System.Runtime.Serialization;
 
 namespace Quotes.Domain.Models
 {
@@ -12,6 +12,8 @@ namespace Quotes.Domain.Models
         [BsonId]
         public ObjectId ID { get; set; }
 
+        public string QuoteID => ID.ToString();
+
         [DataMember]
         [BsonElement("title")]
         public string Title { get; set; }
@@ -20,6 +22,8 @@ namespace Quotes.Domain.Models
         [BsonElement("content")]
         public string Content { get; set; }
 
-        public string QuoteID => ID.ToString();
+        [DataMember]
+        [BsonElement("channelID")]
+        public ObjectId ChannelID { get; set; }
     }
 }

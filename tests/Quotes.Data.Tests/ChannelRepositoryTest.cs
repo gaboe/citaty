@@ -3,8 +3,8 @@ using Quotes.Data.Repositories.Channels;
 using Quotes.Domain.Models;
 using Quotes.Testing.Infrastructure;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using Quotes.Core.Services.Quotes;
 
 namespace Quotes.Tests.Data
 {
@@ -33,30 +33,37 @@ namespace Quotes.Tests.Data
         {
             using (var resolver = new TestResolver())
             {
+                //Arrange
                 var channelRepository = resolver.Resolve<IChannelRepository>();
+                var quoteService = resolver.Resolve<IQuoteService>();
+                var channelTitle = $"Integračné citáty číslo {Guid.NewGuid()}";
                 var quoteContent = $"Toto je integračný citát číslo: {Guid.NewGuid()}";
                 var qouteTitle = $"{Guid.NewGuid()}";
 
+                //Action
+                var channel = new Channel
+                {
+                    Title = channelTitle,
+                };
+
+                channelRepository.Add(channel);
+
                 var quote = new Quote
                 {
+                    ChannelID = channel.ID,
                     Content = quoteContent,
                     Title = qouteTitle
                 };
-                var channelTitle = $"Integračné citáty číslo {Guid.NewGuid()}";
+                quoteService.Add(quote);
 
-                channelRepository.Add(
-                    new Channel
-                    {
-                        Title = channelTitle,
-                        Quotes = new List<Quote> {quote}
-                    });
-
-                var channel = channelRepository.GetByTitle(channelTitle).Result;
-                Assert.IsNotNull(channel);
-                Assert.AreEqual(channelTitle, channel.Title);
-                Assert.AreEqual(1, channel.Quotes.Count());
-                Assert.AreEqual(qouteTitle, quote.Title);
-                Assert.AreEqual(quoteContent, quote.Content);
+                //Assert
+                var channel2 = channelRepository.GetByTitle(channelTitle).Result;
+                var channelQuote = quoteService.GetQuotesByChannelID(channel.ID).Result;
+                Assert.IsNotNull(channel2);
+                Assert.AreEqual(channelTitle, channel2.Title);
+                Assert.AreEqual(1, channelQuote.Count);
+                Assert.AreEqual(qouteTitle, channelQuote.Single().Title);
+                Assert.AreEqual(quoteContent, channelQuote.Single().Content);
             }
         }
     }

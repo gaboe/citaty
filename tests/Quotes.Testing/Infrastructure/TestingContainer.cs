@@ -1,9 +1,10 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Configuration;
+using Quotes.Core.Infrastructure;
 using Quotes.Data.Infrastructure;
+using Quotes.Domain.Settings;
 using System;
 using System.IO;
-using Quotes.Domain.Settings;
 
 namespace Quotes.Testing.Infrastructure
 {
@@ -16,9 +17,10 @@ namespace Quotes.Testing.Infrastructure
                 .SetBasePath(Path.GetFullPath("..\\..\\..\\..\\..\\src\\Quotes.Api"))
                 .AddJsonFile($"appsettings.{environment}.json")
                 .AddEnvironmentVariables();
-            var configurationRoot = configurationBuilder.Build();  
+            var configurationRoot = configurationBuilder.Build();
             var appConfig = configurationRoot.GetSection("App").Get<AppSettings>();
 
+            builder.RegisterModule(new CoreModule());
             builder.RegisterModule(new DataModule(appConfig));
             builder.RegisterModule(new TestingModule());
         }
