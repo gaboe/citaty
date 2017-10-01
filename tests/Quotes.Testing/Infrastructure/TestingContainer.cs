@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Quotes.Core.Infrastructure;
 using Quotes.Data.Infrastructure;
 using Quotes.Domain.Settings;
+using Quotes.GraphQL.Infrastructure;
 using System;
 using System.IO;
 
@@ -22,6 +23,7 @@ namespace Quotes.Testing.Infrastructure
 
             builder.RegisterModule(new CoreModule());
             builder.RegisterModule(new DataModule(appConfig));
+            builder.RegisterModule(new GraphQLModule());
             builder.RegisterModule(new TestingModule());
         }
     }

@@ -14,5 +14,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Quotes.Core\Quotes.Core.csproj" />
     <ProjectReference Include="..\..\src\Quotes.Data\Quotes.Data.csproj" />
+    <ProjectReference Include="..\..\src\Quotes.GraphQL\Quotes.GraphQL.csproj" />
   </ItemGroup>
 </Project>

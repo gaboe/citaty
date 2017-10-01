@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Quotes.Core.Services.Channels;
 using Quotes.Core.Services.Quotes;
 
 namespace Quotes.Core.Infrastructure
@@ -8,6 +9,7 @@ namespace Quotes.Core.Infrastructure
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<QuoteService>().As<IQuoteService>();
+            builder.RegisterType<ChannelService>().As<IChannelService>();
         }
     }
 }
