@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Autofac;
 using GraphQL;
+using GraphQL.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Api.Infrastructure;
 using Quotes.Data.Repositories.Quotes;
@@ -32,7 +33,7 @@ namespace Quotes.Tests.Data
         {
             using (var resolver = new TestResolver(Setup))
             {
-                var schema = resolver.Resolve<QuotesSchema>();
+                var schema = resolver.Resolve<ISchema>();
                 var qt = resolver.Resolve<QuoteType>();
                 var query = new GraphQLQuery
                 {

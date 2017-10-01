@@ -1,8 +1,8 @@
-﻿using GraphQL.Types;
+﻿using System;
+using GraphQL.Types;
 using Quotes.GraphQL.Queries;
-using System;
 
-namespace Quotes.GraphQL
+namespace Quotes.GraphQL.Schemas
 {
     public class QuotesSchema : Schema
     {

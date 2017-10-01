@@ -1,8 +1,9 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using GraphQL.Types;
 using Quotes.GraphQL.Queries;
 using Quotes.GraphQL.Types;
+using System;
+using Quotes.GraphQL.Schemas;
 
 namespace Quotes.GraphQL.Infrastructure
 {
@@ -19,9 +20,10 @@ namespace Quotes.GraphQL.Infrastructure
             builder.Register<Func<Type, GraphType>>(c =>
             {
                 var context = c.Resolve<IComponentContext>();
-                return t => {
-                    var res = context.Resolve(t);
-                    return (GraphType)res;
+                return t =>
+                {
+                    var resolved = context.Resolve(t);
+                    return (GraphType) resolved;
                 };
             });
         }
