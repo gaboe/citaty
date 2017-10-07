@@ -6,6 +6,7 @@ using Quotes.Domain.Settings;
 using Quotes.GraphQL.Infrastructure;
 using System;
 using System.IO;
+using Quotes.Testing.Providers;
 
 namespace Quotes.Testing.Infrastructure
 {
@@ -13,12 +14,7 @@ namespace Quotes.Testing.Infrastructure
     {
         protected override void Load(ContainerBuilder builder)
         {
-            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Path.GetFullPath("..\\..\\..\\..\\..\\src\\Quotes.Api"))
-                .AddJsonFile($"appsettings.{environment}.json")
-                .AddEnvironmentVariables();
-            var configurationRoot = configurationBuilder.Build();
+            var configurationRoot = AppSettingsProvider.GetConfigurationRoot();
             var appConfig = configurationRoot.GetSection("App").Get<AppSettings>();
 
             builder.RegisterModule(new CoreModule());
