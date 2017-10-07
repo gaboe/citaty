@@ -18,6 +18,6 @@ namespace Quotes.Domain.Models
 
         public string Login { get; set; }
 
-        public IList<Channel> FavouriteChannels { get; set; }
+        public IList<Channel> FavouriteChannels { get; set; } = new List<Channel>();
     }
 }

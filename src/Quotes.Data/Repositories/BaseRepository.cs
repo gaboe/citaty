@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Bson.Serialization;
 using TypeExtensions = Quotes.Data.Utils.TypeExtensions;
 
 namespace Quotes.Data.Repositories
@@ -32,6 +33,15 @@ namespace Quotes.Data.Repositories
             //Logger.LogInformation($"Get ${nameof(TEntity)} with id = ${id}");
             var objectID = TypeExtensions.Parse<ObjectId>(id);
             return Collection.FindAsync(x => x.ID.Equals(objectID)).Result.SingleAsync();
+        }
+
+        public Task<List<TEntity>> GetMany(IEnumerable<TKey> ids)
+        {
+            var filter = Builders<TEntity>
+                .Filter
+                .In(x => x.ID, ids);
+
+            return Collection.FindAsync(filter).Result.ToListAsync();
         }
 
         public virtual Task<TEntity> Get(TKey id)
@@ -70,7 +80,8 @@ namespace Quotes.Data.Repositories
         public virtual void Update(TEntity entity, UpdateDefinition<TEntity> updateDefinition)
         {
             //Logger.LogInformation($"Update entity fields ${updateDefinition}");
-            entity.DateUpdated = DateTime.Now;;
+            entity.DateUpdated = DateTime.Now;
+            ;
             Collection.UpdateOneAsync(x => x.ID.Equals(entity.ID), updateDefinition);
         }
     }

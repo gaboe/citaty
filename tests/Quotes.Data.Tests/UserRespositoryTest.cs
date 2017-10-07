@@ -4,6 +4,8 @@ using Quotes.Domain.Models;
 using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
 using System;
+using System.Linq;
+using Quotes.Data.Repositories.Channels;
 
 namespace Quotes.Tests.Data
 {
@@ -44,9 +46,11 @@ namespace Quotes.Tests.Data
             {
                 //Arrange
                 var userRepository = resolver.Resolve<IUserRepository>();
+                var channelRepository = resolver.Resolve<IChannelRepository>();
 
                 //Action
                 var user = userRepository.GetUserByLogin(TestingConstants.UserLogin).Result;
+                var channels = channelRepository.GetMany(user.FavouriteChannels.Select(x => x.ID)).Result;
 
                 //Assert
                 Assert.IsNotNull(user.ID);
@@ -54,6 +58,7 @@ namespace Quotes.Tests.Data
                 Assert.IsNotNull(user.DateUpdated);
                 Assert.IsNotNull(user.FavouriteChannels);
                 Assert.IsTrue(user.FavouriteChannels.Count > 0);
+                Assert.AreEqual(user.FavouriteChannels.Count, channels.Count);
             }
         }
     }
