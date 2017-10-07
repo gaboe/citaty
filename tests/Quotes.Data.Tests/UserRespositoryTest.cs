@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Bogus;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Data.Repositories.Users;
 using Quotes.Domain.Models;
 using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
+using System;
 
 namespace Quotes.Tests.Data
 {
@@ -34,9 +31,29 @@ namespace Quotes.Tests.Data
                 Assert.IsNotNull(user.ID);
                 Assert.IsNotNull(user.DateCreated);
                 Assert.IsNotNull(user.DateUpdated);
-                Assert.AreEqual(login,user2.Login);
+                Assert.AreEqual(login, user2.Login);
                 Assert.IsNotNull(user2.DateCreated);
                 Assert.IsNotNull(user2.DateUpdated);
+            }
+        }
+
+        [TestMethod]
+        public void GetUserByLoginTest()
+        {
+            using (var resolver = new TestResolver())
+            {
+                //Arrange
+                var userRepository = resolver.Resolve<IUserRepository>();
+
+                //Action
+                var user = userRepository.GetUserByLogin(TestingConstants.UserLogin).Result;
+
+                //Assert
+                Assert.IsNotNull(user.ID);
+                Assert.IsNotNull(user.DateCreated);
+                Assert.IsNotNull(user.DateUpdated);
+                Assert.IsNotNull(user.FavouriteChannels);
+                Assert.IsTrue(user.FavouriteChannels.Count > 0);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MongoDB.Bson;
 using Quotes.Data.Context;
 using Quotes.Data.Utils;
 using Quotes.Domain.Models;
@@ -7,7 +8,6 @@ using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
 using System;
 using System.Collections.Generic;
-using MongoDB.Bson;
 
 namespace Quotes.Tests.Data.Seed
 {
@@ -29,12 +29,10 @@ namespace Quotes.Tests.Data.Seed
             {
                 var quoteSchema = resolver.Resolve<ISchemaNameProvider<Quote>>().GetSchemaName();
                 var channelSchema = resolver.Resolve<ISchemaNameProvider<Channel>>().GetSchemaName();
-                var userSchema = resolver.Resolve<ISchemaNameProvider<User>>().GetSchemaName();
 
                 var connection = resolver.Resolve<IDbConnectionFactory>().GetConnection();
                 connection.DropCollection(quoteSchema);
                 connection.DropCollection(channelSchema);
-                connection.DropCollection(userSchema);
 
                 connection.GetCollection<Quote>(quoteSchema).InsertOne(new Quote
                 {
@@ -47,9 +45,37 @@ namespace Quotes.Tests.Data.Seed
                     Title = TestingConstants.ChannelTitle,
                 };
 
-                connection.GetCollection<User>(userSchema).InsertOne(new User{Login = TestingConstants.UserLogin});
                 connection.GetCollection<Channel>(channelSchema).InsertOne(channel);
                 GetChannelQuotes(channel.ID, 1_000);
+                SeedUser();
+            }
+        }
+
+        private static void SeedUser()
+        {
+            using (var resolver = new TestResolver())
+            {
+                var channelSchema = resolver.Resolve<ISchemaNameProvider<Channel>>().GetSchemaName();
+                var connection = resolver.Resolve<IDbConnectionFactory>().GetConnection();
+                var userSchema = resolver.Resolve<ISchemaNameProvider<User>>().GetSchemaName();
+
+                connection.DropCollection(userSchema);
+
+                var favouriteChannel1 = new Channel {Title = $"Favourite channel 1"};
+                var favouriteChannel2 = new Channel {Title = $"Favourite channel 2"};
+                var favouriteChannel3 = new Channel {Title = $"Favourite channel 3"};
+                connection.GetCollection<Channel>(channelSchema)
+                    .InsertMany(new List<Channel> {favouriteChannel1, favouriteChannel2, favouriteChannel3});
+
+                connection.GetCollection<User>(userSchema).InsertOne(new User
+                {
+                    Login = TestingConstants.UserLogin,
+                    FavouriteChannels = new List<Channel> { favouriteChannel1, favouriteChannel2, favouriteChannel3 }
+                });
+
+                GetChannelQuotes(favouriteChannel1.ID, 1_000);
+                GetChannelQuotes(favouriteChannel2.ID, 100);
+                GetChannelQuotes(favouriteChannel3.ID, 10);
             }
         }
 
