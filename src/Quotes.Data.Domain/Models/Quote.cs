@@ -20,5 +20,8 @@ namespace Quotes.Domain.Models
         public string Content { get; set; }
 
         public ObjectId ChannelID { get; set; }
+
+        public string GetChannelID => ChannelID.ToString();
+
     }
 }
