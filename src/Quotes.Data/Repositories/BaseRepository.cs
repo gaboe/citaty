@@ -1,7 +1,8 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using Quotes.Data.Context;
-using Quotes.Data.Domain;
+using Quotes.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,6 +42,8 @@ namespace Quotes.Data.Repositories
 
         public virtual TEntity Add(TEntity entity)
         {
+            entity.DateCreated = DateTime.Now;
+            entity.DateUpdated = DateTime.Now;
             Collection.InsertOne(entity);
             //Logger.LogInformation($"Add entity with id = ${entity.ID}");
             return entity;
@@ -49,6 +52,11 @@ namespace Quotes.Data.Repositories
         public void AddRange(IEnumerable<TEntity> entities)
         {
             var enumerable = entities as IList<TEntity> ?? entities.ToList();
+            foreach (var entity in enumerable)
+            {
+                entity.DateCreated = DateTime.Now;
+                entity.DateUpdated = DateTime.Now;
+            }
             Collection.InsertMany(enumerable);
             //Logger.LogInformation($"Add range of entities with ids = ${enumerable.Select(x => x.ID)}");
         }
@@ -62,6 +70,7 @@ namespace Quotes.Data.Repositories
         public virtual void Update(TEntity entity, UpdateDefinition<TEntity> updateDefinition)
         {
             //Logger.LogInformation($"Update entity fields ${updateDefinition}");
+            entity.DateUpdated = DateTime.Now;;
             Collection.UpdateOneAsync(x => x.ID.Equals(entity.ID), updateDefinition);
         }
     }

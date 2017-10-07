@@ -2,6 +2,7 @@
 using Quotes.Data.Context;
 using Quotes.Data.Repositories.Channels;
 using Quotes.Data.Repositories.Quotes;
+using Quotes.Data.Repositories.Users;
 using Quotes.Data.Utils;
 using Quotes.Domain.Settings;
 
@@ -26,6 +27,7 @@ namespace Quotes.Data.Infrastructure
 
             builder.RegisterType<QuoteRepository>().As<IQuoteRepository>();
             builder.RegisterType<ChannelRepository>().As<IChannelRepository>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
         }
     }
 }

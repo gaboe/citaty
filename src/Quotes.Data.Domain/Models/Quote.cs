@@ -1,6 +1,6 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Quotes.Data.Domain;
 using System.Runtime.Serialization;
 
 namespace Quotes.Domain.Models
@@ -11,8 +11,11 @@ namespace Quotes.Domain.Models
         [DataMember]
         [BsonId]
         public ObjectId ID { get; set; }
-
         public string QuoteID => ID.ToString();
+
+        public DateTime DateCreated { get; set; }
+
+        public DateTime DateUpdated { get; set; }
 
         [DataMember]
         [BsonElement("title")]

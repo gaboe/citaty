@@ -3,6 +3,7 @@
     public class TestingConstants
     {
         public const string QuoteName = "Testovací citát";
-        public static string ChannelTitle = "Testovací kanál";
+        public const string ChannelTitle = "Testovací kanál";
+        public const string UserLogin = "FictionalUser";
     }
 }

@@ -2,10 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Quotes.Core.Infrastructure;
 using Quotes.Data.Infrastructure;
+using Quotes.Domain;
 using Quotes.Domain.Settings;
 using Quotes.GraphQL.Infrastructure;
-using System;
-using System.IO;
 using Quotes.Testing.Providers;
 
 namespace Quotes.Testing.Infrastructure
