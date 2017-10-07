@@ -29,9 +29,12 @@ namespace Quotes.Tests.Data.Seed
             {
                 var quoteSchema = resolver.Resolve<ISchemaNameProvider<Quote>>().GetSchemaName();
                 var channelSchema = resolver.Resolve<ISchemaNameProvider<Channel>>().GetSchemaName();
+                var userSchema = resolver.Resolve<ISchemaNameProvider<User>>().GetSchemaName();
+
                 var connection = resolver.Resolve<IDbConnectionFactory>().GetConnection();
                 connection.DropCollection(quoteSchema);
                 connection.DropCollection(channelSchema);
+                connection.DropCollection(userSchema);
 
                 connection.GetCollection<Quote>(quoteSchema).InsertOne(new Quote
                 {
@@ -43,6 +46,8 @@ namespace Quotes.Tests.Data.Seed
                 {
                     Title = TestingConstants.ChannelTitle,
                 };
+
+                connection.GetCollection<User>(userSchema).InsertOne(new User{Login = TestingConstants.UserLogin});
                 connection.GetCollection<Channel>(channelSchema).InsertOne(channel);
                 GetChannelQuotes(channel.ID, 1_000);
             }

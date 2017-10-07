@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Quotes.Core.Infrastructure;
 using Quotes.Data.Infrastructure;
-using Quotes.Domain;
 using Quotes.Domain.Settings;
 using Quotes.GraphQL.Infrastructure;
 using Quotes.Testing.Providers;
