@@ -8,5 +8,6 @@ namespace Quotes.Core.Services.Users
     {
         Task<List<User>> GetAll();
         Task<User> GetUserByLogin(string login);
+        Task<User> AddUser(User user);
     }
 }

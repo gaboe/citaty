@@ -6,6 +6,7 @@ using Quotes.GraphQL.Queries;
 using Quotes.GraphQL.Schemas;
 using Quotes.GraphQL.Types;
 using System;
+using Quotes.GraphQL.Mutations;
 
 namespace Quotes.GraphQL.Infrastructure
 {
@@ -13,12 +14,15 @@ namespace Quotes.GraphQL.Infrastructure
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<QuotesSchema>().As<ISchema>();
             builder.RegisterType<RootQuery>().AsSelf();
-            builder.RegisterType<QuoteType>().AsSelf();
+            builder.RegisterType<RootMutation>().AsSelf();
+
             builder.RegisterType<ChannelType>().AsSelf();
+            builder.RegisterType<QuoteType>().AsSelf();
             builder.RegisterType<UserType>().AsSelf();
 
-            builder.RegisterType<QuotesSchema>().As<ISchema>();
+            builder.RegisterType<UserInputType>().AsSelf();
 
             builder.Register<Func<Type, GraphType>>(c =>
             {
@@ -32,7 +36,6 @@ namespace Quotes.GraphQL.Infrastructure
 
             builder.RegisterType<Parsers.GraphQLParser>().As<IGraphQLParser>();
             builder.RegisterType<QueryCreator>().As<IQueryCreator>();
-
         }
     }
 }

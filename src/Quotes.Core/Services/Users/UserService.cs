@@ -23,5 +23,10 @@ namespace Quotes.Core.Services.Users
         {
             return _userRepository.GetUserByLogin(login);
         }
+
+        public Task<User> AddUser(User user)
+        {
+            return Task.FromResult(_userRepository.Add(user));
+        }
     }
 }
