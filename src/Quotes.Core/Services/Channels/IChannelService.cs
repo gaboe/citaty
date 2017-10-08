@@ -10,7 +10,7 @@ namespace Quotes.Core.Services.Channels
         Task<Channel> Get(ObjectId channelID);
         Task<Channel> Get(string channelID);
         Task<List<Channel>> GetAll();
-        void Add(Channel channel);
+        Task<Channel> Add(Channel channel);
         Task<Channel> GetByTitle(string title);
         Task<List<Channel>> GetMany(IEnumerable<ObjectId> channelIDs);
     }

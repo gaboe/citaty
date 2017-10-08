@@ -30,9 +30,9 @@ namespace Quotes.Core.Services.Channels
             return _channelRepository.GetAll();
         }
 
-        public void Add(Channel channel)
+        public Task<Channel> Add(Channel channel)
         {
-            _channelRepository.Add(channel);
+            return Task.FromResult(_channelRepository.Add(channel));
         }
 
         public Task<Channel> GetByTitle(string title)
