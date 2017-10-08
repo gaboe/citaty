@@ -34,6 +34,15 @@ namespace Quotes.GraphQL.Queries
             Field<ListGraphType<UserType>>()
                 .Name("users")
                 .Resolve(context => userService.GetAll());
+
+            Field<UserType>(
+                name: "user",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> {Name = "login"}),
+                resolve: context =>
+                {
+                    var login = context.GetArgument<string>("login");
+                    return userService.GetUserByLogin(login);
+                });
         }
     }
 }

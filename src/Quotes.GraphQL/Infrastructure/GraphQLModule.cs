@@ -1,9 +1,11 @@
 ﻿using Autofac;
 using GraphQL.Types;
+using Quotes.Core.Creators;
+using Quotes.GraphQL.Parsers;
 using Quotes.GraphQL.Queries;
+using Quotes.GraphQL.Schemas;
 using Quotes.GraphQL.Types;
 using System;
-using Quotes.GraphQL.Schemas;
 
 namespace Quotes.GraphQL.Infrastructure
 {
@@ -27,6 +29,10 @@ namespace Quotes.GraphQL.Infrastructure
                     return (GraphType) resolved;
                 };
             });
+
+            builder.RegisterType<Parsers.GraphQLParser>().As<IGraphQLParser>();
+            builder.RegisterType<QueryCreator>().As<IQueryCreator>();
+
         }
     }
 }

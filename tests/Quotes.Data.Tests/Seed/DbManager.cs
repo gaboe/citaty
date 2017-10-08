@@ -17,8 +17,8 @@ namespace Quotes.Tests.Data.Seed
         [AssemblyInitialize]
         public static void TruncateAndSeed(TestContext context)
         {
-            if (!IsSeedingEnabled())
-                return;
+            //if (!IsSeedingEnabled())
+            //    return;
             Truncate();
             Seed();
         }
@@ -48,12 +48,12 @@ namespace Quotes.Tests.Data.Seed
                     ChannelID = channel.ID
                 });
 
+                SeedUser(channel);
                 GetChannelQuotes(channel.ID, 1_000);
-                SeedUser();
             }
         }
 
-        private static void SeedUser()
+        private static void SeedUser(Channel channel)
         {
             using (var resolver = new TestResolver())
             {
@@ -67,12 +67,23 @@ namespace Quotes.Tests.Data.Seed
                 var favouriteChannel2 = new Channel {Title = $"Favourite channel 2"};
                 var favouriteChannel3 = new Channel {Title = $"Favourite channel 3"};
                 connection.GetCollection<Channel>(channelSchema)
-                    .InsertMany(new List<Channel> {favouriteChannel1, favouriteChannel2, favouriteChannel3});
+                    .InsertMany(new List<Channel>
+                    {
+                        favouriteChannel1,
+                        favouriteChannel2,
+                        favouriteChannel3
+                    });
 
                 connection.GetCollection<User>(userSchema).InsertOne(new User
                 {
                     Login = TestingConstants.UserLogin,
-                    FavouriteChannels = new List<Channel> { favouriteChannel1, favouriteChannel2, favouriteChannel3 }
+                    FavouriteChannels = new List<Channel>
+                    {
+                        channel,
+                        favouriteChannel1,
+                        favouriteChannel2,
+                        favouriteChannel3
+                    }
                 });
 
                 GetChannelQuotes(favouriteChannel1.ID, 1_000);

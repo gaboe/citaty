@@ -1,14 +1,13 @@
 using System.Linq;
+using System.Threading.Tasks;
 using Autofac;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.GraphQL.Queries;
-using Quotes.GraphQL.Types;
 using Quotes.Testing.Infrastructure;
-using System.Threading.Tasks;
 
-namespace Quotes.Tests.GraphQL
+namespace Quotes.Tests.GraphQL.Queries
 {
     [TestClass]
     public class IntrospectionQueryTest

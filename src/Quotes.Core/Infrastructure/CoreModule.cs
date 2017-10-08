@@ -12,7 +12,6 @@ namespace Quotes.Core.Infrastructure
             builder.RegisterType<QuoteService>().As<IQuoteService>();
             builder.RegisterType<ChannelService>().As<IChannelService>();
             builder.RegisterType<UserService>().As<IUserService>();
-
         }
     }
 }

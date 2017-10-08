@@ -4,6 +4,6 @@
     {
         public const string QuoteTitle = "Testovací citát";
         public const string ChannelTitle = "Testovací kanál";
-        public const string UserLogin = "FictionalUser";
+        public const string UserLogin = "fictional.user";
     }
 }
