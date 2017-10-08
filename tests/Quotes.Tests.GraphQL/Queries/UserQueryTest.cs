@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Api;
@@ -12,6 +8,11 @@ using Quotes.GraphQL.Tree;
 using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
 using Quotes.Testing.Providers;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Quotes.GraphQL.Queries;
 
 namespace Quotes.Tests.GraphQL.Queries
 {
@@ -37,7 +38,6 @@ namespace Quotes.Tests.GraphQL.Queries
                 var parser = resolver.Resolve<IGraphQLParser>();
                 var creator = resolver.Resolve<IQueryCreator>();
 
-                //Action
                 var tree = new TreeNode
                 {
                     Value = "users",
@@ -64,39 +64,25 @@ namespace Quotes.Tests.GraphQL.Queries
                         }
                     }
                 };
-                string pp = parser.ParseTree(tree);
+                //Action
+                var query = parser.ParseTree(tree);
 
-                var r = await _client.PostAsync("/graphql", creator.CreateQuery(pp));
-                r.EnsureSuccessStatusCode();
-                var rs = await r.Content.ReadAsStringAsync();
+                var responseMessage = await _client.PostAsync("/graphql", creator.CreateQuery(query));
+                responseMessage.EnsureSuccessStatusCode();
+
+                var responseString = await responseMessage.Content.ReadAsStringAsync();
 
                 //Assert
-                Assert.IsTrue(rs.Contains(TestingConstants.QuoteTitle));
+                Assert.IsTrue(responseString.Contains(TestingConstants.QuoteTitle));
             }
-
-            ////Arrange
-            //const string query =
-            //    @"{""query"": ""query {users{userID,login,favouriteChannels{title,quotes{title,channelID,content}}}}""}";
-            //var content = new StringContent(query, Encoding.UTF8, "application/json");
-
-            ////Action
-            //var response = await _client.PostAsync("/graphql", content);
-            //response.EnsureSuccessStatusCode();
-            //var responseString = await response.Content.ReadAsStringAsync();
-
-            //// Assert
-            //Assert.IsTrue(responseString.Contains(TestingConstants.UserLogin));
         }
 
         [TestMethod]
-        [Ignore]
         public async Task GetUserByLoginTest()
         {
             //Arrange
-            //{Query = {user(login: "fictional.user"){ login}}}
-            const string
-                query =
-                    "{Query : {user(login: \"fictional.user\"){ login}}}"; // @"{""query"": ""query {user(login:""fictional.user""){login}}""}";
+            const string query = "{\"query\":\"{\\n  user(login: \\\"fictional.user\\\") {\\n    userID\\n    login\\n  }\\n}\\n\",\"variables\":null,\"operationName\":null}";
+
             var content = new StringContent(query, Encoding.UTF8, "application/json");
 
             //Action
