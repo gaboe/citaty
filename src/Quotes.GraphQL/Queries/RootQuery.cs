@@ -15,26 +15,25 @@ namespace Quotes.GraphQL.Queries
             IUserService userService
         )
         {
-            Field<QuoteType>(
-                "quote",
-                resolve: context => quoteService.GetAll().Result.First()
-            );
-            Field<ListGraphType<QuoteType>>(
-                "quotes",
-                resolve: context => quoteService.GetAll()
-            );
-            Field<ChannelType>(
-                "channel",
-                resolve: context => channelService.GetAll().Result.First()
-            );
-            Field<ListGraphType<ChannelType>>(
-                "channels",
-                resolve: context => channelService.GetAll()
-            );
-            Field<ListGraphType<UserType>>(
-                "users",
-                resolve: context => userService.GetAll()
-            );
+            Field<QuoteType>()
+                .Name("quote")
+                .Resolve(context => quoteService.GetAll().Result.First());
+
+            Field<ListGraphType<QuoteType>>()
+                .Name("quotes")
+                .Resolve(context => quoteService.GetAll());
+
+            Field<ChannelType>()
+                .Name("channel")
+                .Resolve(context => channelService.GetAll().Result.First());
+
+            Field<ListGraphType<ChannelType>>()
+                .Name("channels")
+                .Resolve(context => channelService.GetAll());
+
+            Field<ListGraphType<UserType>>()
+                .Name("users")
+                .Resolve(context => userService.GetAll());
         }
     }
 }
