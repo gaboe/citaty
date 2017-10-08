@@ -12,13 +12,12 @@ namespace Quotes.GraphQL.Types
             Description = "One quote in channel";
 
             Field(x => x.QuoteID).Description("ID of quote");
-            Field(x => x.Title).Description("The name of the quote");
             Field(x => x.Content).Description("Content of the quote");
 
             Field<StringGraphType>()
-                .Name("ChannelID")
+                .Name("OwningChannelID")
                 .Description("ID of channel where current quote belongs")
-                .Resolve(context => context.Source.ChannelID.ToString());
+                .Resolve(context => context.Source.OwningChannelID);
 
             Field<ChannelType>()
                 .Name(nameof(Channel))

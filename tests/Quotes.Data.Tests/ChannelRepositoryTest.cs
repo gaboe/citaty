@@ -39,7 +39,6 @@ namespace Quotes.Tests.Data
                 var quoteService = resolver.Resolve<IQuoteRepository>();
                 var channelTitle = $"Integračné citáty číslo {Guid.NewGuid()}";
                 var quoteContent = $"Toto je integračný citát číslo: {Guid.NewGuid()}";
-                var qouteTitle = $"{Guid.NewGuid()}";
 
                 //Action
                 var channel = new Channel
@@ -53,7 +52,6 @@ namespace Quotes.Tests.Data
                 {
                     ChannelID = channel.ID,
                     Content = quoteContent,
-                    Title = qouteTitle
                 };
                 quoteService.Add(quote);
 
@@ -63,7 +61,6 @@ namespace Quotes.Tests.Data
                 Assert.IsNotNull(channel2);
                 Assert.AreEqual(channelTitle, channel2.Title);
                 Assert.AreEqual(1, channelQuote.Count);
-                Assert.AreEqual(qouteTitle, channelQuote.Single().Title);
                 Assert.AreEqual(quoteContent, channelQuote.Single().Content);
             }
         }

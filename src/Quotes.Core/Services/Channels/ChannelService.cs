@@ -20,6 +20,11 @@ namespace Quotes.Core.Services.Channels
             return _channelRepository.Get(channelID);
         }
 
+        public Task<Channel> Get(string channelID)
+        {
+            return _channelRepository.Get(channelID);
+        }
+
         public Task<List<Channel>> GetAll()
         {
             return _channelRepository.GetAll();

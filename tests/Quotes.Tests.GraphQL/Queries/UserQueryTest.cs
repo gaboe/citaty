@@ -56,7 +56,7 @@ namespace Quotes.Tests.GraphQL.Queries
                                     Value = "quotes",
                                     Childrens = new List<TreeNode>
                                     {
-                                        new TreeNode {Value = "title"},
+                                        new TreeNode {Value = "quoteID"},
                                         new TreeNode {Value = "content"}
                                     }
                                 }
@@ -73,7 +73,7 @@ namespace Quotes.Tests.GraphQL.Queries
                 var responseString = await responseMessage.Content.ReadAsStringAsync();
 
                 //Assert
-                Assert.IsTrue(responseString.Contains(TestingConstants.QuoteTitle));
+                Assert.IsTrue(responseString.Contains(TestingConstants.QuoteContent));
             }
         }
 

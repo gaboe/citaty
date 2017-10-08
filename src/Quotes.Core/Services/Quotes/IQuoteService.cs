@@ -9,6 +9,6 @@ namespace Quotes.Core.Services.Quotes
     {
         Task<List<Quote>> GetAll();
         Task<List<Quote>> GetQuotesByChannelID(ObjectId channelID);
-        void Add(Quote quote);
+        Task<Quote> Add(Quote quote);
     }
 }

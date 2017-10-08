@@ -23,6 +23,7 @@ namespace Quotes.GraphQL.Infrastructure
             builder.RegisterType<UserType>().AsSelf();
 
             builder.RegisterType<UserInputType>().AsSelf();
+            builder.RegisterType<QuoteInputType>().AsSelf();
 
             builder.Register<Func<Type, GraphType>>(c =>
             {

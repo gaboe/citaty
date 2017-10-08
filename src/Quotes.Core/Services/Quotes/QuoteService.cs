@@ -20,9 +20,9 @@ namespace Quotes.Core.Services.Quotes
             return _quoteRepository.GetQuotesByChannelID(channelID);
         }
 
-        public void Add(Quote quote)
+        public Task<Quote> Add(Quote quote)
         {
-            _quoteRepository.Add(quote);
+            return Task.FromResult(_quoteRepository.Add(quote));
         }
 
         public Task<List<Quote>> GetAll()

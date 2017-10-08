@@ -8,6 +8,7 @@ namespace Quotes.Core.Services.Channels
     public interface IChannelService
     {
         Task<Channel> Get(ObjectId channelID);
+        Task<Channel> Get(string channelID);
         Task<List<Channel>> GetAll();
         void Add(Channel channel);
         Task<Channel> GetByTitle(string title);

@@ -35,14 +35,14 @@ namespace Quotes.Tests.GraphQL.Queries
                 var creator = resolver.Resolve<IQueryCreator>();
 
                 //Action
-                var query = parser.Parse("query", "quote", new[] {"quoteID", "title"});
+                var query = parser.Parse("query", "quote", new[] {"quoteID", "content"});
 
                 var response = await _client.PostAsync("/graphql", creator.CreateQuery(query));
                 response.EnsureSuccessStatusCode();
                 var responseString = await response.Content.ReadAsStringAsync();
 
                 //Assert
-                Assert.IsTrue(responseString.Contains(TestingConstants.QuoteTitle));
+                Assert.IsTrue(responseString.Contains(TestingConstants.QuoteContent));
             }
         }
     }

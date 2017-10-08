@@ -17,8 +17,8 @@ namespace Quotes.Tests.Data.Seed
         [AssemblyInitialize]
         public static void TruncateAndSeed(TestContext context)
         {
-            if (!IsSeedingEnabled())
-                return;
+            //if (!IsSeedingEnabled())
+            //    return;
             Truncate();
             Seed();
         }
@@ -43,8 +43,7 @@ namespace Quotes.Tests.Data.Seed
 
                 connection.GetCollection<Quote>(quoteSchema).InsertOne(new Quote
                 {
-                    Title = TestingConstants.QuoteTitle,
-                    Content = new Faker().Lorem.Sentence(6, 6),
+                    Content = TestingConstants.QuoteContent,
                     ChannelID = channel.ID
                 });
 
@@ -102,7 +101,6 @@ namespace Quotes.Tests.Data.Seed
                 quotes.Add(new Quote
                 {
                     ChannelID = channelId,
-                    Title = faker.Lorem.Slug(2),
                     Content = faker.Lorem.Sentence(15, 4)
                 });
             }
