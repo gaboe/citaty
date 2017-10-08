@@ -1,3 +1,4 @@
+using System.Linq;
 using Autofac;
 using GraphQL;
 using GraphQL.Types;
@@ -33,7 +34,10 @@ namespace Quotes.Tests.GraphQL
                     documentExecuter.ExecuteAsync(executionOptions).ConfigureAwait(true);
 
                 Assert.IsNotNull(result);
-                Assert.IsTrue(result.Errors == null);
+                Assert.IsTrue(result.Errors == null,
+                    string.Concat(result.Errors != null && result.Errors.Any()
+                        ? result.Errors
+                        : new ExecutionErrors()));
             }
         }
 

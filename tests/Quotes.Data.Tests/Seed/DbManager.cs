@@ -34,18 +34,20 @@ namespace Quotes.Tests.Data.Seed
                 connection.DropCollection(quoteSchema);
                 connection.DropCollection(channelSchema);
 
-                connection.GetCollection<Quote>(quoteSchema).InsertOne(new Quote
-                {
-                    Title = TestingConstants.QuoteName,
-                    Content = new Faker().Lorem.Sentence(6, 6)
-                });
-
                 var channel = new Channel
                 {
                     Title = TestingConstants.ChannelTitle,
                 };
 
                 connection.GetCollection<Channel>(channelSchema).InsertOne(channel);
+
+                connection.GetCollection<Quote>(quoteSchema).InsertOne(new Quote
+                {
+                    Title = TestingConstants.QuoteTitle,
+                    Content = new Faker().Lorem.Sentence(6, 6),
+                    ChannelID = channel.ID
+                });
+
                 GetChannelQuotes(channel.ID, 1_000);
                 SeedUser();
             }

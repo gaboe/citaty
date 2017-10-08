@@ -36,7 +36,7 @@ namespace Quotes.Tests.GraphQL
             var responseString = await response.Content.ReadAsStringAsync();
            
             // Assert
-            Assert.IsTrue(responseString.Contains(TestingConstants.QuoteName));
+            Assert.IsTrue(responseString.Contains(TestingConstants.QuoteTitle));
         }
     }
 }

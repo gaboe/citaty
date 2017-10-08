@@ -2,7 +2,7 @@
 {
     public class TestingConstants
     {
-        public const string QuoteName = "Testovací citát";
+        public const string QuoteTitle = "Testovací citát";
         public const string ChannelTitle = "Testovací kanál";
         public const string UserLogin = "FictionalUser";
     }

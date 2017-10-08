@@ -18,5 +18,10 @@ namespace Quotes.Core.Services.Users
         {
             return _userRepository.GetAll();
         }
+
+        public Task<User> GetUserByLogin(string login)
+        {
+            return _userRepository.GetUserByLogin(login);
+        }
     }
 }

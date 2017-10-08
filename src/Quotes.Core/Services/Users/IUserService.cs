@@ -7,5 +7,6 @@ namespace Quotes.Core.Services.Users
     public interface IUserService
     {
         Task<List<User>> GetAll();
+        Task<User> GetUserByLogin(string login);
     }
 }

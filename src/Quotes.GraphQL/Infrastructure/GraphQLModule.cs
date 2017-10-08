@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using GraphQL.Types;
 using Quotes.GraphQL.Queries;
-using Quotes.GraphQL.Schemas;
 using Quotes.GraphQL.Types;
 using System;
+using Quotes.GraphQL.Schemas;
 
 namespace Quotes.GraphQL.Infrastructure
 {
@@ -11,6 +11,11 @@ namespace Quotes.GraphQL.Infrastructure
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<RootQuery>().AsSelf();
+            builder.RegisterType<QuoteType>().AsSelf();
+            builder.RegisterType<ChannelType>().AsSelf();
+            builder.RegisterType<UserType>().AsSelf();
+
             builder.RegisterType<QuotesSchema>().As<ISchema>();
 
             builder.Register<Func<Type, GraphType>>(c =>
@@ -19,14 +24,9 @@ namespace Quotes.GraphQL.Infrastructure
                 return t =>
                 {
                     var resolved = context.Resolve(t);
-                    return (GraphType)resolved;
+                    return (GraphType) resolved;
                 };
             });
-
-            builder.RegisterType<RootQuery>().AsSelf();
-            builder.RegisterType<QuoteType>().AsSelf();
-            builder.RegisterType<ChannelType>().AsSelf();
-            builder.RegisterType<UserType>().AsSelf();
         }
     }
 }

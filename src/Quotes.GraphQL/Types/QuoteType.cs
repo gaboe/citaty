@@ -1,11 +1,13 @@
 ﻿using GraphQL.Types;
+using Quotes.Core.Services.Channels;
+using Quotes.Core.Services.Users;
 using Quotes.Domain.Models;
 
 namespace Quotes.GraphQL.Types
 {
     public class QuoteType : ObjectGraphType<Quote>
     {
-        public QuoteType()
+        public QuoteType(IChannelService channelService)
         {
             Field(x => x.QuoteID).Description("ID of quote");
             Field(x => x.Title).Description("The name of the quote");
@@ -14,6 +16,9 @@ namespace Quotes.GraphQL.Types
                 Name = "ChannelID",
                 quote => quote.ChannelID.ToString()
             );
+            Field<ChannelType>()
+                .Name(nameof(Channel))
+                .Resolve(context => channelService.Get(context.Source.ChannelID));
         }
     }
 }
