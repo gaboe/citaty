@@ -17,8 +17,8 @@ namespace Quotes.Tests.Data.Seed
         [AssemblyInitialize]
         public static void TruncateAndSeed(TestContext context)
         {
-            //if (!IsSeedingEnabled())
-            //    return;
+            if (!IsSeedingEnabled())
+                return;
             Truncate();
             Seed();
         }
