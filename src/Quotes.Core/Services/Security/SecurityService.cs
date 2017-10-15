@@ -18,14 +18,9 @@ namespace Quotes.Core.Services.Security
         public Task<ClaimsIdentity> GetIdentity(string username, string password)
         {
             var user = _userManager.FindByNameAsync(username).Result;
-            // Don't do this in production, obviously!
-            if (username == "TEST" && password == "TEST123")
-            {
-                return Task.FromResult(new ClaimsIdentity(new GenericIdentity(username, "Token"), new Claim[] { }));
-            }
-
-            // Credentials are invalid, or account doesn't exist
-            return Task.FromResult<ClaimsIdentity>(null);
+            return user != null
+                ? Task.FromResult(new ClaimsIdentity(new GenericIdentity(username, "Token"), new Claim[] { }))
+                : Task.FromResult<ClaimsIdentity>(null);
         }
     }
 }
