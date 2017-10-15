@@ -5,12 +5,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using Quotes.Api.Auth;
 using Quotes.Api.Infrastructure;
+using Quotes.Core.Providers.Security;
 using Quotes.Domain.Settings;
 using System;
-using System.Text;
 
 namespace Quotes.Api
 {

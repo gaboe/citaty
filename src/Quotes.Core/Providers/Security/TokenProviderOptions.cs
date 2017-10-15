@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.IdentityModel.Tokens;
 
-namespace Quotes.Api.Auth
+namespace Quotes.Core.Providers.Security
 {
     public class TokenProviderOptions
     {
