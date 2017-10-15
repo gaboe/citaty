@@ -28,18 +28,6 @@ namespace Quotes.Api
                 .AddJwtBearer(options => { options.TokenValidationParameters = _tokenValidationParameters; });
         }
 
-        private Task<ClaimsIdentity> GetIdentity(string username, string password)
-        {
-            // Don't do this in production, obviously!
-            if (username == "TEST" && password == "TEST123")
-            {
-                return Task.FromResult(new ClaimsIdentity(new GenericIdentity(username, "Token"), new Claim[] { }));
-            }
-
-            // Credentials are invalid, or account doesn't exist
-            return Task.FromResult<ClaimsIdentity>(null);
-        }
-
         private void ConfigureTokens()
         {
             _signingKey =
@@ -70,7 +58,6 @@ namespace Quotes.Api
                 Audience = Configuration.GetSection("TokenAuthentication:Audience").Value,
                 Issuer = Configuration.GetSection("TokenAuthentication:Issuer").Value,
                 SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256),
-                IdentityResolver = GetIdentity
             };
         }
     }

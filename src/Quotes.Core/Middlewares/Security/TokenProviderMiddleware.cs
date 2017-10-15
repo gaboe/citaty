@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Quotes.Core.Services.Security;
 
 namespace Quotes.Core.Middlewares.Security
 {
@@ -14,13 +15,17 @@ namespace Quotes.Core.Middlewares.Security
     {
         private readonly RequestDelegate _next;
         private readonly TokenProviderSettings _options;
+        private readonly ISecurityService _securityService;
 
         public TokenProviderMiddleware(
             RequestDelegate next,
-            IOptions<TokenProviderSettings> options)
+            IOptions<TokenProviderSettings> options,
+            ISecurityService securityService
+            )
         {
             ThrowIfInvalidOptions(options.Value);
             _next = next;
+            _securityService = securityService;
             _options = options.Value;
         }
 
@@ -31,11 +36,12 @@ namespace Quotes.Core.Middlewares.Security
                 return _next(context);
             }
 
-
-            if (context.Request.Method.Equals("POST") && context.Request.HasFormContentType)
-                return GenerateToken(context);
-            context.Response.StatusCode = 400;
-            return context.Response.WriteAsync("Bad request.");
+            if (!context.Request.Method.Equals("POST") || !context.Request.HasFormContentType)
+            {
+                context.Response.StatusCode = 400;
+                return context.Response.WriteAsync("Bad request.");
+            }
+            return GenerateToken(context);
         }
 
         private async Task GenerateToken(HttpContext context)
@@ -43,7 +49,7 @@ namespace Quotes.Core.Middlewares.Security
             var username = context.Request.Form["username"];
             var password = context.Request.Form["password"];
 
-            var identity = await _options.IdentityResolver(username, password);
+            var identity = await _securityService.GetIdentity(username, password);
             if (identity == null)
             {
                 context.Response.StatusCode = 400;
@@ -117,11 +123,6 @@ namespace Quotes.Core.Middlewares.Security
             if (options.Expiration == TimeSpan.Zero)
             {
                 throw new ArgumentException("Must be a non-zero TimeSpan.", nameof(TokenProviderSettings.Expiration));
-            }
-
-            if (options.IdentityResolver == null)
-            {
-                throw new ArgumentNullException(nameof(TokenProviderSettings.IdentityResolver));
             }
 
             if (options.SigningCredentials == null)
