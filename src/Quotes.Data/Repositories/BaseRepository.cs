@@ -31,14 +31,14 @@ namespace Quotes.Data.Repositories
         {
             //Logger.LogInformation($"Get ${nameof(TEntity)} with id = ${id}");
             var objectID = TypeExtensions.Parse<ObjectId>(id);
-            return Collection.FindAsync(x => x.ID.Equals(objectID)).Result.SingleAsync();
+            return Collection.FindAsync(x => x.Id.Equals(objectID)).Result.SingleAsync();
         }
 
         public Task<List<TEntity>> GetMany(IEnumerable<TKey> ids)
         {
             var filter = Builders<TEntity>
                 .Filter
-                .In(x => x.ID, ids);
+                .In(x => x.Id, ids);
 
             return Collection.FindAsync(filter).Result.ToListAsync();
         }
@@ -46,7 +46,7 @@ namespace Quotes.Data.Repositories
         public virtual Task<TEntity> Get(TKey id)
         {
             //Logger.LogInformation($"Get ${nameof(TEntity)} with id = ${id}");
-            return Collection.FindAsync(x => x.ID.Equals(id)).Result.SingleAsync();
+            return Collection.FindAsync(x => x.Id.Equals(id)).Result.SingleAsync();
         }
 
         public virtual TEntity Add(TEntity entity)
@@ -73,7 +73,7 @@ namespace Quotes.Data.Repositories
         public virtual void Delete(TKey id)
         {
             //Logger.LogInformation($"Delete entity with id = ${id}");
-            Collection.DeleteOne(e => e.ID.Equals(id));
+            Collection.DeleteOne(e => e.Id.Equals(id));
         }
 
         public virtual void Update(TEntity entity, UpdateDefinition<TEntity> updateDefinition)
@@ -81,7 +81,7 @@ namespace Quotes.Data.Repositories
             //Logger.LogInformation($"Update entity fields ${updateDefinition}");
             entity.DateUpdated = DateTime.Now;
             ;
-            Collection.UpdateOneAsync(x => x.ID.Equals(entity.ID), updateDefinition);
+            Collection.UpdateOneAsync(x => x.Id.Equals(entity.Id), updateDefinition);
         }
     }
 }

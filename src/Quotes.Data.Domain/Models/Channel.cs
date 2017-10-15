@@ -8,7 +8,7 @@ namespace Quotes.Domain.Models
     public class Channel : IEntity<ObjectId>
     {
         [BsonId]
-        public ObjectId ID { get; set; }
+        public ObjectId Id { get; set; }
 
         public DateTime DateCreated { get; set; }
 
@@ -18,6 +18,6 @@ namespace Quotes.Domain.Models
 
         public IEnumerable<Quote> Quotes { get; set; }
 
-        public string ChannelID => ID.ToString();
+        public string ChannelID => Id.ToString();
     }
 }

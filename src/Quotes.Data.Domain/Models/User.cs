@@ -1,16 +1,19 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.AspNet.Identity;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 
 namespace Quotes.Domain.Models
 {
-    public class User : IEntity<ObjectId>
+    public class User : IUser<ObjectId>, IEntity<ObjectId>
     {
         [BsonId]
-        public ObjectId ID { get; set; }
+        public ObjectId Id { get; set; }
 
-        public string UserID => ID.ToString();
+        public string UserName { get; set; }
+
+        public string UserID => Id.ToString();
 
         public DateTime DateCreated { get; set; }
 

@@ -57,7 +57,7 @@ namespace Quotes.Tests.Data
 
         private class Bus : IEntity<ObjectId>
         {
-            public ObjectId ID { get; set; }
+            public ObjectId Id { get; set; }
             public DateTime DateCreated { get; set; }
             public DateTime DateUpdated { get; set; }
         }

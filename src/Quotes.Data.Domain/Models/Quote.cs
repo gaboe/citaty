@@ -7,9 +7,9 @@ namespace Quotes.Domain.Models
     public class Quote : IEntity<ObjectId>
     {
         [BsonId]
-        public ObjectId ID { get; set; }
+        public ObjectId Id { get; set; }
 
-        public string QuoteID => ID.ToString();
+        public string QuoteID => Id.ToString();
 
         public DateTime DateCreated { get; set; }
 

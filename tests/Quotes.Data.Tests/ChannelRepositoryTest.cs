@@ -49,14 +49,14 @@ namespace Quotes.Tests.Data
 
                 var quote = new Quote
                 {
-                    ChannelID = channel.ID,
+                    ChannelID = channel.Id,
                     Content = quoteContent,
                 };
                 quoteService.Add(quote);
 
                 //Assert
                 var channel2 = channelRepository.GetByTitle(channelTitle).Result;
-                var channelQuote = quoteService.GetQuotesByChannelID(channel.ID).Result;
+                var channelQuote = quoteService.GetQuotesByChannelID(channel.Id).Result;
                 Assert.IsNotNull(channel2);
                 Assert.AreEqual(channelTitle, channel2.Title);
                 Assert.AreEqual(1, channelQuote.Count);

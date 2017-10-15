@@ -15,7 +15,7 @@ namespace Quotes.GraphQL.Types
             Field<ListGraphType<ChannelType>>(
                 Name = nameof(User.FavouriteChannels).ToCamelCase(),
                 Description = "Favourite channels of user",
-                resolve: c => channelService.GetMany(c.Source.FavouriteChannels.Select(x => x.ID))
+                resolve: c => channelService.GetMany(c.Source.FavouriteChannels.Select(x => x.Id))
             );
         }
     }

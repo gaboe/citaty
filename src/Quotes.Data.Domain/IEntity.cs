@@ -4,7 +4,7 @@ namespace Quotes.Domain
 {
     public interface IEntity<TKey>
     {
-        TKey ID { get; set; }
+        TKey Id { get; set; }
 
         DateTime DateCreated { get; set; }
 

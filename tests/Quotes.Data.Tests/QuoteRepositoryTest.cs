@@ -33,7 +33,7 @@ namespace Quotes.Tests.Data
 
                 var channel = channelRepository.GetByTitle(TestingConstants.ChannelTitle).Result;
 
-                var quotes = quoteRepository.GetQuotesByChannelID(channel.ID).Result;
+                var quotes = quoteRepository.GetQuotesByChannelID(channel.Id).Result;
                 var testingQuote = quotes.First(x => x.Content.Equals(TestingConstants.QuoteContent));
 
                 Assert.IsNotNull(quotes);

@@ -15,7 +15,7 @@ namespace Quotes.GraphQL.Types
             Field<ListGraphType<QuoteType>>()
                 .Name(nameof(Channel.Quotes))
                 .Description("List of quotes")
-                .Resolve(context => quotesService.GetQuotesByChannelID(context.Source.ID));
+                .Resolve(context => quotesService.GetQuotesByChannelID(context.Source.Id));
         }
     }
 }

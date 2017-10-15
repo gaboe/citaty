@@ -9,6 +9,9 @@ using Quotes.Api.Infrastructure;
 using Quotes.Core.Middlewares.Security;
 using Quotes.Domain.Settings;
 using System;
+using Microsoft.AspNetCore.Identity;
+using Quotes.Core.Services.Security;
+using Quotes.Domain.Models;
 
 namespace Quotes.Api
 {
@@ -27,10 +30,14 @@ namespace Quotes.Api
         {
             services.AddMvc();
             ConfigureAuth(services);
+
+            services.AddTransient<IUserStore<User>, UserStore>();
+            services.AddIdentity<User,IdentityRole>().AddDefaultTokenProviders();
             var builder = new ContainerBuilder();
             var appConfig = Configuration.GetSection("App").Get<AppSettings>();
             builder.RegisterModule(new WebModule(appConfig));
             builder.Populate(services);
+
             var container = builder.Build();
             //Create the IServiceProvider based on the container.
             return new AutofacServiceProvider(container);

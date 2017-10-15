@@ -44,11 +44,11 @@ namespace Quotes.Tests.Data.Seed
                 connection.GetCollection<Quote>(quoteSchema).InsertOne(new Quote
                 {
                     Content = TestingConstants.QuoteContent,
-                    ChannelID = channel.ID
+                    ChannelID = channel.Id
                 });
 
                 SeedUser(channel);
-                GetChannelQuotes(channel.ID, 1_000);
+                GetChannelQuotes(channel.Id, 1_000);
             }
         }
 
@@ -85,9 +85,9 @@ namespace Quotes.Tests.Data.Seed
                     }
                 });
 
-                GetChannelQuotes(favouriteChannel1.ID, 1_000);
-                GetChannelQuotes(favouriteChannel2.ID, 100);
-                GetChannelQuotes(favouriteChannel3.ID, 10);
+                GetChannelQuotes(favouriteChannel1.Id, 1_000);
+                GetChannelQuotes(favouriteChannel2.Id, 100);
+                GetChannelQuotes(favouriteChannel3.Id, 10);
             }
         }
 
