@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Quotes.Api.Auth;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Threading.Tasks;
 
 namespace Quotes.Api
 {
@@ -29,13 +24,14 @@ namespace Quotes.Api
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
                 .AddJwtBearer(options => { options.TokenValidationParameters = _tokenValidationParameters; })
-                .AddCookie(options =>
-                {
-                    options.Cookie.Name = Configuration.GetSection("TokenAuthentication:CookieName").Value;
-                    options.TicketDataFormat = new CustomJwtDataFormat(
-                        SecurityAlgorithms.HmacSha256,
-                        _tokenValidationParameters);
-                });
+                //.AddCookie(options =>
+                //{
+                //    options.Cookie.Name = Configuration.GetSection("TokenAuthentication:CookieName").Value;
+                //    options.TicketDataFormat = new CustomJwtDataFormat(
+                //        SecurityAlgorithms.HmacSha256,
+                //        _tokenValidationParameters);
+                //})
+                ;
         }
 
         private Task<ClaimsIdentity> GetIdentity(string username, string password)

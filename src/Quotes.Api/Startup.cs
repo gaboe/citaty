@@ -5,13 +5,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Quotes.Api.Infrastructure;
-using System;
-using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Quotes.Api.Auth;
-using Quotes.Domain;
+using Quotes.Api.Infrastructure;
 using Quotes.Domain.Settings;
+using System;
+using System.Text;
 
 namespace Quotes.Api
 {
@@ -78,8 +77,6 @@ namespace Quotes.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            
 
             app.UseStaticFiles();
             app.UseGraphiQl();
