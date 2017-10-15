@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-using Quotes.Core.Providers.Security;
+using Quotes.Domain.Settings;
 
 namespace Quotes.Api
 {
@@ -16,7 +16,7 @@ namespace Quotes.Api
 
         private TokenValidationParameters _tokenValidationParameters;
 
-        private TokenProviderOptions _tokenProviderOptions;
+        private TokenProviderSettings _tokenProviderOptions;
 
         private void ConfigureAuth(IServiceCollection services)
         {
@@ -64,7 +64,7 @@ namespace Quotes.Api
             };
 
 
-            _tokenProviderOptions = new TokenProviderOptions
+            _tokenProviderOptions = new TokenProviderSettings
             {
                 Path = Configuration.GetSection("TokenAuthentication:TokenPath").Value,
                 Audience = Configuration.GetSection("TokenAuthentication:Audience").Value,

@@ -1,32 +1,27 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Quotes.Domain.Settings;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Quotes.Core.Providers.Security
+namespace Quotes.Core.Middlewares.Security
 {
     public class TokenProviderMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly TokenProviderOptions _options;
-        private readonly JsonSerializerSettings _serializerSettings;
+        private readonly TokenProviderSettings _options;
 
         public TokenProviderMiddleware(
             RequestDelegate next,
-            IOptions<TokenProviderOptions> options)
+            IOptions<TokenProviderSettings> options)
         {
+            ThrowIfInvalidOptions(options.Value);
             _next = next;
-
             _options = options.Value;
-            ThrowIfInvalidOptions(_options);
-
-            _serializerSettings = new JsonSerializerSettings
-            {
-                Formatting = Formatting.Indented
-            };
         }
 
         public Task Invoke(HttpContext context)
@@ -56,18 +51,41 @@ namespace Quotes.Core.Providers.Security
                 return;
             }
 
-            var now = DateTime.UtcNow;
-
-
-            var claims = new Claim[]
+            var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
                 new Claim(JwtRegisteredClaimNames.Jti, await _options.NonceGenerator()),
                 new Claim(JwtRegisteredClaimNames.Iat,
-                    new DateTimeOffset(now).ToUniversalTime().ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
+                    new DateTimeOffset(DateTime.Now).ToUniversalTime().ToUnixTimeSeconds().ToString(),
+                    ClaimValueTypes.Integer64)
             };
 
-            // Create the JWT and write it to a string
+            var response = GetSerializedResponse(claims);
+
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsync(response);
+        }
+
+        private string GetSerializedResponse(IEnumerable<Claim> claims)
+        {
+
+            var encodedJwt = GetEncodedJwtToken(claims);
+
+            var response = new
+            {
+                access_token = encodedJwt,
+                expires_in = (int) _options.Expiration.TotalSeconds
+            };
+
+            return JsonConvert.SerializeObject(response, new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented
+            });
+        }
+
+        private string GetEncodedJwtToken(IEnumerable<Claim> claims)
+        {
+            var now = DateTime.UtcNow;
             var jwt = new JwtSecurityToken(
                 issuer: _options.Issuer,
                 audience: _options.Audience,
@@ -76,53 +94,44 @@ namespace Quotes.Core.Providers.Security
                 expires: now.Add(_options.Expiration),
                 signingCredentials: _options.SigningCredentials);
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            var response = new
-            {
-                access_token = encodedJwt,
-                expires_in = (int)_options.Expiration.TotalSeconds
-            };
-
-            // Serialize and return the response
-            context.Response.ContentType = "application/json";
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(response, _serializerSettings));
+            return encodedJwt;
         }
 
-        private static void ThrowIfInvalidOptions(TokenProviderOptions options)
+        private static void ThrowIfInvalidOptions(TokenProviderSettings options)
         {
             if (string.IsNullOrEmpty(options.Path))
             {
-                throw new ArgumentNullException(nameof(TokenProviderOptions.Path));
+                throw new ArgumentNullException(nameof(TokenProviderSettings.Path));
             }
 
             if (string.IsNullOrEmpty(options.Issuer))
             {
-                throw new ArgumentNullException(nameof(TokenProviderOptions.Issuer));
+                throw new ArgumentNullException(nameof(TokenProviderSettings.Issuer));
             }
 
             if (string.IsNullOrEmpty(options.Audience))
             {
-                throw new ArgumentNullException(nameof(TokenProviderOptions.Audience));
+                throw new ArgumentNullException(nameof(TokenProviderSettings.Audience));
             }
 
             if (options.Expiration == TimeSpan.Zero)
             {
-                throw new ArgumentException("Must be a non-zero TimeSpan.", nameof(TokenProviderOptions.Expiration));
+                throw new ArgumentException("Must be a non-zero TimeSpan.", nameof(TokenProviderSettings.Expiration));
             }
 
             if (options.IdentityResolver == null)
             {
-                throw new ArgumentNullException(nameof(TokenProviderOptions.IdentityResolver));
+                throw new ArgumentNullException(nameof(TokenProviderSettings.IdentityResolver));
             }
 
             if (options.SigningCredentials == null)
             {
-                throw new ArgumentNullException(nameof(TokenProviderOptions.SigningCredentials));
+                throw new ArgumentNullException(nameof(TokenProviderSettings.SigningCredentials));
             }
 
             if (options.NonceGenerator == null)
             {
-                throw new ArgumentNullException(nameof(TokenProviderOptions.NonceGenerator));
+                throw new ArgumentNullException(nameof(TokenProviderSettings.NonceGenerator));
             }
         }
     }

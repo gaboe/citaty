@@ -1,11 +1,11 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.IdentityModel.Tokens;
 
-namespace Quotes.Core.Providers.Security
+namespace Quotes.Domain.Settings
 {
-    public class TokenProviderOptions
+    public class TokenProviderSettings
     {
         /// <summary>
         /// The relative request path to listen on.

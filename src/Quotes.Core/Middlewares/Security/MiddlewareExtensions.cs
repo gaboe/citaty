@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Options;
+using Quotes.Domain.Settings;
 
-namespace Quotes.Core.Providers.Security
+namespace Quotes.Core.Middlewares.Security
 {
     public static class MiddlewareExtensions
     {
         public static IApplicationBuilder UseTokenProvider(this IApplicationBuilder builder,
-            TokenProviderOptions parameters)
+            TokenProviderSettings parameters)
         {
             return builder.UseMiddleware<TokenProviderMiddleware>(Options.Create(parameters));
         }
