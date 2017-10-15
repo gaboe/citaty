@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MongoDB.Bson;
 using Quotes.Data.Utils;
 using Quotes.Domain;
 using Quotes.Domain.Models;
 using Quotes.Testing.Infrastructure;
+using System;
 
 namespace Quotes.Tests.Data
 {
@@ -18,7 +18,7 @@ namespace Quotes.Tests.Data
             {
                 var schemaProvider = resolver.Resolve<ISchemaNameProvider<Quote>>();
                 var name = schemaProvider.GetSchemaName();
-                Assert.AreEqual("quotes",name);
+                Assert.AreEqual("quotes", name);
             }
         }
 

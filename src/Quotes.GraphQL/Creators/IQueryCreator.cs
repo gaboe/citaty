@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace Quotes.Core.Creators
+namespace Quotes.GraphQL.Creators
 {
     public interface IQueryCreator
     {

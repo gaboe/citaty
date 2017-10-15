@@ -1,14 +1,14 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Api;
-using Quotes.Core.Creators;
 using Quotes.GraphQL.Parsers;
 using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
 using Quotes.Testing.Providers;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Quotes.GraphQL.Creators;
 
 namespace Quotes.Tests.GraphQL.Queries
 {
@@ -35,7 +35,7 @@ namespace Quotes.Tests.GraphQL.Queries
                 var creator = resolver.Resolve<IQueryCreator>();
 
                 //Action
-                var query = parser.Parse("query", "quote", new[] {"quoteID", "content"});
+                var query = parser.Parse("query", "quote", new[] { "quoteID", "content" });
 
                 var response = await _client.PostAsync("/graphql", creator.CreateQuery(query));
                 response.EnsureSuccessStatusCode();

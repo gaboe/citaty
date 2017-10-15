@@ -8,7 +8,9 @@ namespace Quotes.Core.Services.Quotes
     public interface IQuoteService
     {
         Task<List<Quote>> GetAll();
+
         Task<List<Quote>> GetQuotesByChannelID(ObjectId channelID);
+
         Task<Quote> Add(Quote quote);
     }
 }

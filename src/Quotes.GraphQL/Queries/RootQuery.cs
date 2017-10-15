@@ -37,7 +37,7 @@ namespace Quotes.GraphQL.Queries
 
             Field<UserType>(
                 name: "user",
-                arguments: new QueryArguments(new QueryArgument<StringGraphType> {Name = "login"}),
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "login" }),
                 resolve: context =>
                 {
                     var login = context.GetArgument<string>("login");

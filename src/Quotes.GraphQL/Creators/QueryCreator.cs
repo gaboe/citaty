@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Text;
 
-namespace Quotes.Core.Creators
+namespace Quotes.GraphQL.Creators
 {
     public class QueryCreator : IQueryCreator
     {

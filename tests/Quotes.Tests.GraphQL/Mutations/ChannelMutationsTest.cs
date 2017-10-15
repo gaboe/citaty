@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Api;
-using Quotes.Core.Services.Channels;
-using Quotes.Testing;
-using Quotes.Testing.Infrastructure;
 using Quotes.Testing.Providers;
 using System;
 using System.Net.Http;

@@ -1,11 +1,11 @@
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.GraphQL.Queries;
 using Quotes.Testing.Infrastructure;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Quotes.Tests.GraphQL.Queries
 {

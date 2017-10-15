@@ -1,11 +1,9 @@
 ﻿using GraphQL;
 using GraphQL.Types;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Quotes.Api.Infrastructure;
 using Quotes.GraphQL.Queries;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Quotes.GraphQL;
 
 namespace Quotes.Api.Controllers
 {
@@ -35,7 +33,7 @@ namespace Quotes.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] GraphQLQuery query)
         {
-            var executionOptions = new ExecutionOptions {Schema = _schema, Query = query.Query};
+            var executionOptions = new ExecutionOptions { Schema = _schema, Query = query.Query };
             var result = await _documentExecuter.ExecuteAsync(executionOptions).ConfigureAwait(false);
 
             if (result.Errors?.Count > 0)

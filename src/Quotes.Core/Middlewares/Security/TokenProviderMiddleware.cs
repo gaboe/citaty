@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Quotes.Core.Services.Security;
 using Quotes.Domain.Settings;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Quotes.Core.Services.Security;
 
 namespace Quotes.Core.Middlewares.Security
 {
@@ -66,7 +66,7 @@ namespace Quotes.Core.Middlewares.Security
                     ClaimValueTypes.Integer64)
             };
 
-            var response = GetSerializedResponse(claims,now);
+            var response = GetSerializedResponse(claims, now);
 
             context.Response.ContentType = "application/json";
             await context.Response.WriteAsync(response);
@@ -74,7 +74,7 @@ namespace Quotes.Core.Middlewares.Security
 
         private string GetSerializedResponse(IEnumerable<Claim> claims, DateTime now)
         {
-            var encodedJwt = GetEncodedJwtToken(claims,now);
+            var encodedJwt = GetEncodedJwtToken(claims, now);
 
             var response = new
             {

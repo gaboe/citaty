@@ -41,6 +41,5 @@ namespace Quotes.Tests.GraphQL.Mutations
             // Assert
             Assert.IsTrue(responseString.Contains(login));
         }
-
     }
 }

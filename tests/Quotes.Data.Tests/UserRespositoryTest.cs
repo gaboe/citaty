@@ -1,11 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Quotes.Data.Repositories.Channels;
 using Quotes.Data.Repositories.Users;
 using Quotes.Domain.Models;
 using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
 using System;
 using System.Linq;
-using Quotes.Data.Repositories.Channels;
 
 namespace Quotes.Tests.Data
 {

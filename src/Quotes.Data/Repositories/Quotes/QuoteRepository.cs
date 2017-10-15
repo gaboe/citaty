@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using Quotes.Data.Context;
 using Quotes.Domain.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Quotes.Data.Repositories.Quotes
 {

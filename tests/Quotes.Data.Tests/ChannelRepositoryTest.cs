@@ -1,11 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Data.Repositories.Channels;
+using Quotes.Data.Repositories.Quotes;
 using Quotes.Domain.Models;
 using Quotes.Testing.Infrastructure;
 using System;
 using System.Linq;
-using Quotes.Core.Services.Quotes;
-using Quotes.Data.Repositories.Quotes;
 
 namespace Quotes.Tests.Data
 {
@@ -20,7 +19,7 @@ namespace Quotes.Tests.Data
                 var channelRepository = resolver.Resolve<IChannelRepository>();
                 var title = $"Integračné citáty číslo {Guid.NewGuid()}";
 
-                channelRepository.Add(new Channel {Title = title});
+                channelRepository.Add(new Channel { Title = title });
 
                 var channel = channelRepository.GetByTitle(title).Result;
 

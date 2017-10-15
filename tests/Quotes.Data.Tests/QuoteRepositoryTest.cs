@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Data.Repositories.Channels;
 using Quotes.Data.Repositories.Quotes;
 using Quotes.Testing;
 using Quotes.Testing.Infrastructure;
+using System.Linq;
 
 namespace Quotes.Tests.Data
 {

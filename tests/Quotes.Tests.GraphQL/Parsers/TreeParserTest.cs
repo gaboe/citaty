@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.GraphQL.Parsers;
 using Quotes.GraphQL.Tree;
 using Quotes.Testing.Infrastructure;
+using System.Collections.Generic;
 
 namespace Quotes.Tests.GraphQL.Parsers
 {

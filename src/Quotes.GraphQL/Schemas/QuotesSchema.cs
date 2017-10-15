@@ -9,8 +9,8 @@ namespace Quotes.GraphQL.Schemas
     {
         public QuotesSchema(Func<Type, GraphType> resolveType) : base(resolveType)
         {
-            Query = (RootQuery) resolveType(typeof(RootQuery));
-            Mutation = (RootMutation) resolveType(typeof(RootMutation));
+            Query = (RootQuery)resolveType(typeof(RootQuery));
+            Mutation = (RootMutation)resolveType(typeof(RootMutation));
         }
     }
 }

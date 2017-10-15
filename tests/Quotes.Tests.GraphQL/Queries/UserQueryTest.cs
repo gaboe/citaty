@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Api;
-using Quotes.Core.Creators;
 using Quotes.GraphQL.Parsers;
 using Quotes.GraphQL.Tree;
 using Quotes.Testing;
@@ -12,7 +11,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Quotes.GraphQL.Queries;
+using Quotes.GraphQL.Creators;
 
 namespace Quotes.Tests.GraphQL.Queries
 {

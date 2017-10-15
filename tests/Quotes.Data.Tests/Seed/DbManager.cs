@@ -62,9 +62,9 @@ namespace Quotes.Tests.Data.Seed
 
                 connection.DropCollection(userSchema);
 
-                var favouriteChannel1 = new Channel {Title = $"Favourite channel 1"};
-                var favouriteChannel2 = new Channel {Title = $"Favourite channel 2"};
-                var favouriteChannel3 = new Channel {Title = $"Favourite channel 3"};
+                var favouriteChannel1 = new Channel { Title = $"Favourite channel 1" };
+                var favouriteChannel2 = new Channel { Title = $"Favourite channel 2" };
+                var favouriteChannel3 = new Channel { Title = $"Favourite channel 3" };
                 connection.GetCollection<Channel>(channelSchema)
                     .InsertMany(new List<Channel>
                     {
