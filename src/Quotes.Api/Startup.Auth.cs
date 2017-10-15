@@ -1,12 +1,10 @@
-﻿using System;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 using Quotes.Domain.Settings;
+using System;
+using System.Text;
 
 namespace Quotes.Api
 {
@@ -30,34 +28,31 @@ namespace Quotes.Api
 
         private void ConfigureTokens()
         {
+            var tokenProviderSettings = Configuration.GetSection("App").Get<AppSettings>().TokenProviderSettings;
+
             _signingKey =
                 new SymmetricSecurityKey(
-                    Encoding.ASCII.GetBytes(Configuration.GetSection("TokenAuthentication:SecretKey").Value));
+                    Encoding.ASCII.GetBytes(tokenProviderSettings.SecretKey));
 
             _tokenValidationParameters = new TokenValidationParameters
             {
-                // The signing key must match!
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = _signingKey,
-                // Validate the JWT Issuer (iss) claim
                 ValidateIssuer = true,
-                ValidIssuer = Configuration.GetSection("TokenAuthentication:Issuer").Value,
-                // Validate the JWT Audience (aud) claim
+                ValidIssuer = tokenProviderSettings.Issuer,
                 ValidateAudience = true,
-                ValidAudience = Configuration.GetSection("TokenAuthentication:Audience").Value,
-                // Validate the token expiry
+                ValidAudience = tokenProviderSettings.Audience,
                 ValidateLifetime = true,
-                // If you want to allow a certain amount of clock drift, set that here:
                 ClockSkew = TimeSpan.Zero
             };
 
-
             _tokenProviderOptions = new TokenProviderSettings
             {
-                Path = Configuration.GetSection("TokenAuthentication:TokenPath").Value,
-                Audience = Configuration.GetSection("TokenAuthentication:Audience").Value,
-                Issuer = Configuration.GetSection("TokenAuthentication:Issuer").Value,
+                TokenPath = tokenProviderSettings.TokenPath,
+                Issuer = tokenProviderSettings.Issuer,
+                Audience = tokenProviderSettings.Audience,
                 SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256),
+                ExpirationInMinutes = tokenProviderSettings.ExpirationInMinutes
             };
         }
     }

@@ -31,7 +31,7 @@ namespace Quotes.Core.Middlewares.Security
 
         public Task Invoke(HttpContext context)
         {
-            if (!context.Request.Path.Equals(_options.Path, StringComparison.Ordinal))
+            if (!context.Request.Path.Equals(_options.TokenPath, StringComparison.Ordinal))
             {
                 return _next(context);
             }
@@ -56,31 +56,30 @@ namespace Quotes.Core.Middlewares.Security
                 await context.Response.WriteAsync("Invalid username or password.");
                 return;
             }
-
+            var now = DateTime.UtcNow;
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
                 new Claim(JwtRegisteredClaimNames.Jti, await _options.NonceGenerator()),
                 new Claim(JwtRegisteredClaimNames.Iat,
-                    new DateTimeOffset(DateTime.Now).ToUniversalTime().ToUnixTimeSeconds().ToString(),
+                    new DateTimeOffset(now).ToUniversalTime().ToUnixTimeSeconds().ToString(),
                     ClaimValueTypes.Integer64)
             };
 
-            var response = GetSerializedResponse(claims);
+            var response = GetSerializedResponse(claims,now);
 
             context.Response.ContentType = "application/json";
             await context.Response.WriteAsync(response);
         }
 
-        private string GetSerializedResponse(IEnumerable<Claim> claims)
+        private string GetSerializedResponse(IEnumerable<Claim> claims, DateTime now)
         {
-
-            var encodedJwt = GetEncodedJwtToken(claims);
+            var encodedJwt = GetEncodedJwtToken(claims,now);
 
             var response = new
             {
                 access_token = encodedJwt,
-                expires_in = (int) _options.Expiration.TotalSeconds
+                expires_in = now.AddMinutes(_options.ExpirationInMinutes),
             };
 
             return JsonConvert.SerializeObject(response, new JsonSerializerSettings
@@ -89,15 +88,14 @@ namespace Quotes.Core.Middlewares.Security
             });
         }
 
-        private string GetEncodedJwtToken(IEnumerable<Claim> claims)
+        private string GetEncodedJwtToken(IEnumerable<Claim> claims, DateTime now)
         {
-            var now = DateTime.UtcNow;
             var jwt = new JwtSecurityToken(
                 issuer: _options.Issuer,
                 audience: _options.Audience,
                 claims: claims,
                 notBefore: now,
-                expires: now.Add(_options.Expiration),
+                expires: now.AddMinutes(_options.ExpirationInMinutes),
                 signingCredentials: _options.SigningCredentials);
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
             return encodedJwt;
@@ -105,9 +103,9 @@ namespace Quotes.Core.Middlewares.Security
 
         private static void ThrowIfInvalidOptions(TokenProviderSettings options)
         {
-            if (string.IsNullOrEmpty(options.Path))
+            if (string.IsNullOrEmpty(options.TokenPath))
             {
-                throw new ArgumentNullException(nameof(TokenProviderSettings.Path));
+                throw new ArgumentNullException(nameof(TokenProviderSettings.TokenPath));
             }
 
             if (string.IsNullOrEmpty(options.Issuer))
@@ -120,9 +118,9 @@ namespace Quotes.Core.Middlewares.Security
                 throw new ArgumentNullException(nameof(TokenProviderSettings.Audience));
             }
 
-            if (options.Expiration == TimeSpan.Zero)
+            if (options.ExpirationInMinutes == 0)
             {
-                throw new ArgumentException("Must be a non-zero TimeSpan.", nameof(TokenProviderSettings.Expiration));
+                throw new ArgumentException("Must be a non-zero TimeSpan.", nameof(TokenProviderSettings.ExpirationInMinutes));
             }
 
             if (options.SigningCredentials == null)
