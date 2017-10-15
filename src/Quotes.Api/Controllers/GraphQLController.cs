@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using Quotes.Api.Infrastructure;
 using Quotes.GraphQL.Queries;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Quotes.GraphQL;
 
 namespace Quotes.Api.Controllers
 {
+    [Authorize]
     [Produces("application/json")]
     [Route("graphql")]
     public class GraphQLController : Controller

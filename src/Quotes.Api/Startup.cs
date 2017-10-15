@@ -7,16 +7,50 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Quotes.Api.Infrastructure;
 using System;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Quotes.Api.Auth;
 using Quotes.Domain;
 using Quotes.Domain.Settings;
 
 namespace Quotes.Api
 {
-    public class Startup
+    public partial class Startup
     {
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            _signingKey =
+                new SymmetricSecurityKey(
+                    Encoding.ASCII.GetBytes(Configuration.GetSection("TokenAuthentication:SecretKey").Value));
+
+            _tokenValidationParameters = new TokenValidationParameters
+            {
+                // The signing key must match!
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = _signingKey,
+                // Validate the JWT Issuer (iss) claim
+                ValidateIssuer = true,
+                ValidIssuer = Configuration.GetSection("TokenAuthentication:Issuer").Value,
+                // Validate the JWT Audience (aud) claim
+                ValidateAudience = true,
+                ValidAudience = Configuration.GetSection("TokenAuthentication:Audience").Value,
+                // Validate the token expiry
+                ValidateLifetime = true,
+                // If you want to allow a certain amount of clock drift, set that here:
+                ClockSkew = TimeSpan.Zero
+            };
+
+
+            _tokenProviderOptions = new TokenProviderOptions
+            {
+                Path = Configuration.GetSection("TokenAuthentication:TokenPath").Value,
+                Audience = Configuration.GetSection("TokenAuthentication:Audience").Value,
+                Issuer = Configuration.GetSection("TokenAuthentication:Issuer").Value,
+                SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256),
+                IdentityResolver = GetIdentity
+            };
         }
 
         public IConfiguration Configuration { get; }
@@ -25,6 +59,7 @@ namespace Quotes.Api
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            ConfigureAuth(services);
             var builder = new ContainerBuilder();
             var appConfig = Configuration.GetSection("App").Get<AppSettings>();
             builder.RegisterModule(new WebModule(appConfig));
@@ -44,9 +79,13 @@ namespace Quotes.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            
+
             app.UseStaticFiles();
             app.UseGraphiQl();
 
+            app.UseTokenProvider(_tokenProviderOptions);
+            app.UseAuthentication();
             app.UseMvc();
             app.UseDefaultFiles();
         }
