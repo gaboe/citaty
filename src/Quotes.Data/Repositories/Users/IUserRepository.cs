@@ -8,8 +8,6 @@ namespace Quotes.Data.Repositories.Users
     {
         Task<User> GetUserByLogin(string username);
 
-        void SetPasswordHash(ObjectId id, string passwordHash);
-
-        void SetUsername(ObjectId id, string userName);
+        Task<User> GetUserByNormalizedUsername(string normalizedUserName);
     }
 }

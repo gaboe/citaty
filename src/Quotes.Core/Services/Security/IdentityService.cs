@@ -26,7 +26,9 @@ namespace Quotes.Core.Services.Security
         public Task<User> CreateIdentity(string username, string password)
         {
             var identityResult = _userManager.CreateAsync(new User {UserName = username}, password).Result;
-            return _userManager.FindByNameAsync(username);
+            return identityResult.Succeeded
+                ? _userManager.FindByNameAsync(username)
+                : null;
         }
     }
 }

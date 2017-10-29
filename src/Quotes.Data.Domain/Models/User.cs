@@ -24,5 +24,7 @@ namespace Quotes.Domain.Models
         public string Password { get; set; }
 
         public string PasswordHash { get; set; }
+
+        public string NormalizedUserName { get; set; }
     }
 }

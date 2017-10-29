@@ -11,21 +11,17 @@ namespace Quotes.Core.Services.Users
 
         Task<User> GetUserByUsername(string username);
 
+        Task<User> GetUserByNormalizedUsername(string normalizedUserName);
+
         Task<User> AddUser(User user);
 
         Task<User> GetByID(ObjectId id);
 
         Task<User> GetByID(string id);
 
-        bool Exists(ObjectId id);
-
         void CreateUser(User user);
 
         void DeleteUser(User user);
-
-        void SetPasswordHash(ObjectId id, string passwordHash);
-
-        void SetUsername(ObjectId id, string userName);
 
         void Replace(User user);
     }

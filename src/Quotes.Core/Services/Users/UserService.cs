@@ -1,9 +1,8 @@
-﻿using Quotes.Data.Repositories.Users;
+﻿using MongoDB.Bson;
+using Quotes.Data.Repositories.Users;
 using Quotes.Domain.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace Quotes.Core.Services.Users
 {
@@ -26,6 +25,11 @@ namespace Quotes.Core.Services.Users
             return _userRepository.GetUserByLogin(username);
         }
 
+        public Task<User> GetUserByNormalizedUsername(string normalizedUserName)
+        {
+            return _userRepository.GetUserByNormalizedUsername(normalizedUserName);
+        }
+
         public Task<User> AddUser(User user)
         {
             return Task.FromResult(_userRepository.Add(user));
@@ -34,11 +38,6 @@ namespace Quotes.Core.Services.Users
         public Task<User> GetByID(ObjectId id)
         {
             return _userRepository.Get(id);
-        }
-
-        public bool Exists(ObjectId id)
-        {
-            return _userRepository.Exists(id).Result;
         }
 
         public void CreateUser(User user)
@@ -54,16 +53,6 @@ namespace Quotes.Core.Services.Users
         public Task<User> GetByID(string id)
         {
             return _userRepository.Get(id);
-        }
-
-        public void SetPasswordHash(ObjectId id, string passwordHash)
-        {
-            _userRepository.SetPasswordHash(id, passwordHash);
-        }
-
-        public void SetUsername(ObjectId id, string userName)
-        {
-            _userRepository.SetUsername(id, userName);
         }
 
         public void Replace(User user)
