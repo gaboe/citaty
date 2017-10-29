@@ -27,10 +27,10 @@ namespace Quotes.Tests.Data
 
                 //Action
                 userRepository.Add(user);
-                var user2 = userRepository.Get(user.I).Result;
+                var user2 = userRepository.Get(user.Id).Result;
 
                 //Assert
-                Assert.IsNotNull(user.I);
+                Assert.IsNotNull(user.Id);
                 Assert.IsNotNull(user.DateCreated);
                 Assert.IsNotNull(user.DateUpdated);
                 Assert.AreEqual(login, user2.Login);
@@ -53,7 +53,7 @@ namespace Quotes.Tests.Data
                 var channels = channelRepository.GetMany(user.FavouriteChannels.Select(x => x.Id)).Result;
 
                 //Assert
-                Assert.IsNotNull(user.I);
+                Assert.IsNotNull(user.Id);
                 Assert.IsNotNull(user.DateCreated);
                 Assert.IsNotNull(user.DateUpdated);
                 Assert.IsNotNull(user.FavouriteChannels);

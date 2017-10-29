@@ -6,11 +6,11 @@ using Quotes.Domain.Models;
 
 namespace Quotes.Core.Services.Security
 {
-    public class SecurityService : ISecurityService
+    public class IdentityService : IIdentityService
     {
         private readonly UserManager<User> _userManager;
 
-        public SecurityService(UserManager<User> userManager)
+        public IdentityService(UserManager<User> userManager)
         {
             _userManager = userManager;
         }
@@ -21,6 +21,12 @@ namespace Quotes.Core.Services.Security
             return user != null
                 ? Task.FromResult(new ClaimsIdentity(new GenericIdentity(username, "Token"), new Claim[] { }))
                 : Task.FromResult<ClaimsIdentity>(null);
+        }
+
+        public Task<User> CreateIdentity(string username, string password)
+        {
+            var identityResult = _userManager.CreateAsync(new User {UserName = username}, password).Result;
+            return _userManager.FindByNameAsync(username);
         }
     }
 }

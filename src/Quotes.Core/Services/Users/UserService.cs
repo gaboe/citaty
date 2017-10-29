@@ -49,5 +49,10 @@ namespace Quotes.Core.Services.Users
         {
             return _userRepository.Get(id);
         }
+
+        public void SetPasswordHash(ObjectId id, string passwordHash)
+        {
+            _userRepository.SetPasswordHash(id, passwordHash);
+        }
     }
 }

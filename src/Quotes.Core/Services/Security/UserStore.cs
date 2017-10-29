@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Quotes.Core.Services.Security
 {
-    public class UserStore : IUserStore<User>
+    public class UserStore : IUserPasswordStore<User>
     {
         private readonly IUserService _userService;
 
@@ -73,6 +73,24 @@ namespace Quotes.Core.Services.Security
         public Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
             return _userService.GetUserByLogin(normalizedUserName);
+        }
+
+        public Task SetPasswordHashAsync(User user, string passwordHash, CancellationToken cancellationToken)
+        {
+            _userService.SetPasswordHash(user.Id, passwordHash);
+            return new Task(null);
+        }
+
+        public Task<string> GetPasswordHashAsync(User user, CancellationToken cancellationToken)
+        {
+            var passwordHash = _userService.GetByID(user.Id).Result.PasswordHash;
+            return Task.FromResult(passwordHash);
+        }
+
+        public Task<bool> HasPasswordAsync(User user, CancellationToken cancellationToken)
+        {
+            var userPassword = _userService.GetByID(user.Id).Result.Password;
+            return Task.FromResult(string.IsNullOrEmpty(userPassword));
         }
     }
 }

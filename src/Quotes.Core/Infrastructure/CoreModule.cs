@@ -10,7 +10,7 @@ namespace Quotes.Core.Infrastructure
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<SecurityService>().As<ISecurityService>();
+            builder.RegisterType<IdentityService>().As<IIdentityService>();
 
             builder.RegisterType<QuoteService>().As<IQuoteService>();
             builder.RegisterType<ChannelService>().As<IChannelService>();

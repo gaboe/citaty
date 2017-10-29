@@ -1,7 +1,7 @@
-﻿using Quotes.Domain.Models;
+﻿using MongoDB.Bson;
+using Quotes.Domain.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MongoDB.Bson;
 
 namespace Quotes.Core.Services.Users
 {
@@ -12,10 +12,15 @@ namespace Quotes.Core.Services.Users
         Task<User> GetUserByLogin(string login);
 
         Task<User> AddUser(User user);
+
         Task<User> GetByID(ObjectId id);
+
+        Task<User> GetByID(string id);
+
         void CreateUser(User user);
 
         void DeleteUser(User user);
-        Task<User> GetByID(string id);
+
+        void SetPasswordHash(ObjectId id, string passwordHash);
     }
 }

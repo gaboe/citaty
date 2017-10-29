@@ -15,17 +15,17 @@ namespace Quotes.Core.Middlewares.Security
     {
         private readonly RequestDelegate _next;
         private readonly TokenProviderSettings _options;
-        private readonly ISecurityService _securityService;
+        private readonly IIdentityService _identityService;
 
         public TokenProviderMiddleware(
             RequestDelegate next,
             IOptions<TokenProviderSettings> options,
-            ISecurityService securityService
+            IIdentityService identityService
             )
         {
             ThrowIfInvalidOptions(options.Value);
             _next = next;
-            _securityService = securityService;
+            _identityService = identityService;
             _options = options.Value;
         }
 
@@ -49,7 +49,7 @@ namespace Quotes.Core.Middlewares.Security
             var username = context.Request.Form["username"];
             var password = context.Request.Form["password"];
 
-            var identity = await _securityService.GetIdentity(username, password);
+            var identity = await _identityService.GetIdentity(username, password);
             if (identity == null)
             {
                 context.Response.StatusCode = 400;
