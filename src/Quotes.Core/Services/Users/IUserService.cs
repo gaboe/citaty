@@ -22,5 +22,9 @@ namespace Quotes.Core.Services.Users
         void DeleteUser(User user);
 
         void SetPasswordHash(ObjectId id, string passwordHash);
+
+        void SetUsername(ObjectId id, string userName);
+
+        void Replace(User user);
     }
 }

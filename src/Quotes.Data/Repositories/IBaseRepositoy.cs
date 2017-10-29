@@ -16,6 +16,8 @@ namespace Quotes.Data.Repositories
 
         TEntity Add(TEntity entity);
 
+        Task<ReplaceOneResult> Replace(TEntity entity);
+
         void AddRange(IEnumerable<TEntity> entities);
 
         void Delete(TKey id);

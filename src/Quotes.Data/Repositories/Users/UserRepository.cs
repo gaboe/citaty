@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using Quotes.Data.Context;
 using Quotes.Domain.Models;
@@ -22,6 +21,12 @@ namespace Quotes.Data.Repositories.Users
         {
             Collection.UpdateOne(user => user.Id.Equals(id),
                 Builders<User>.Update.Set(user => user.PasswordHash, passwordHash));
+        }
+
+        public void SetUsername(ObjectId id, string userName)
+        {
+            Collection.UpdateOneAsync(user => user.Id.Equals(id),
+                Builders<User>.Update.Set(user => user.UserName, userName));
         }
     }
 }

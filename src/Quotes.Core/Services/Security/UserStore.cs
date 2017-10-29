@@ -32,36 +32,41 @@ namespace Quotes.Core.Services.Security
 
         public Task SetUserNameAsync(User user, string userName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _userService.SetUsername(user.Id, userName);
+            return Task.CompletedTask;
         }
 
         public Task<string> GetNormalizedUserNameAsync(User user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var username = _userService.GetByID(user.Id).Result.UserName.ToUpper();
+            return Task.FromResult(username);
         }
 
         public Task SetNormalizedUserNameAsync(User user, string normalizedName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _userService.SetUsername(user.Id, normalizedName);
+            return Task.CompletedTask;
         }
 
         public Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken)
         {
             _userService.CreateUser(user);
-            var result = new IdentityResult {Errors = { },};
+            var result = new IdentityResult();
             return Task.FromResult(result);
         }
 
         public Task<IdentityResult> UpdateAsync(User user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _userService.Replace(user);
+            var result = new IdentityResult();
+            return Task.FromResult(result);
         }
 
         public Task<IdentityResult> DeleteAsync(User user, CancellationToken cancellationToken)
         {
             _userService.DeleteUser(user);
 
-            var result = new IdentityResult {Errors = { },};
+            var result = new IdentityResult();
             return Task.FromResult(result);
         }
 
@@ -78,7 +83,7 @@ namespace Quotes.Core.Services.Security
         public Task SetPasswordHashAsync(User user, string passwordHash, CancellationToken cancellationToken)
         {
             _userService.SetPasswordHash(user.Id, passwordHash);
-            return new Task(null);
+            return Task.CompletedTask;
         }
 
         public Task<string> GetPasswordHashAsync(User user, CancellationToken cancellationToken)

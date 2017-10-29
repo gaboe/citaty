@@ -9,5 +9,7 @@ namespace Quotes.Data.Repositories.Users
         Task<User> GetUserByLogin(string login);
 
         void SetPasswordHash(ObjectId id, string passwordHash);
+
+        void SetUsername(ObjectId id, string userName);
     }
 }

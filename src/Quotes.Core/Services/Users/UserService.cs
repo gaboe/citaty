@@ -3,6 +3,7 @@ using Quotes.Domain.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Quotes.Core.Services.Users
 {
@@ -53,6 +54,16 @@ namespace Quotes.Core.Services.Users
         public void SetPasswordHash(ObjectId id, string passwordHash)
         {
             _userRepository.SetPasswordHash(id, passwordHash);
+        }
+
+        public void SetUsername(ObjectId id, string userName)
+        {
+            _userRepository.SetUsername(id, userName);
+        }
+
+        public void Replace(User user)
+        {
+            _userRepository.Replace(user);
         }
     }
 }
