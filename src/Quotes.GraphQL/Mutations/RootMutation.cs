@@ -1,7 +1,7 @@
 ﻿using GraphQL.Types;
 using Quotes.Core.Services.Channels;
 using Quotes.Core.Services.Quotes;
-using Quotes.Core.Services.Users;
+using Quotes.Core.Services.Security;
 using Quotes.Domain.Models;
 using Quotes.GraphQL.Types;
 
@@ -9,22 +9,26 @@ namespace Quotes.GraphQL.Mutations
 {
     public class RootMutation : ObjectGraphType<object>
     {
-        public RootMutation(IUserService userService, IQuoteService quoteService, IChannelService channelService)
+        public RootMutation(
+            IQuoteService quoteService,
+            IChannelService channelService,
+            IIdentityService identityService)
         {
             Name = "Mutation";
 
             Field<UserType>(
                 "createUser",
-                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "login" }),
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> {Name = "login"},
+                    new QueryArgument<StringGraphType> {Name = "password"}),
                 resolve: context =>
                 {
-                    var login = context.GetArgument<string>("login");
-                    return userService.AddUser(new User { Login = login.ToString() });
+                    var user = identityService.CreateIdentity("test", "123456").Result;
+                    return user;
                 });
 
             Field<QuoteType>(
                 "createQuote",
-                arguments: new QueryArguments(new QueryArgument<QuoteInputType> { Name = "input" }),
+                arguments: new QueryArguments(new QueryArgument<QuoteInputType> {Name = "input"}),
                 resolve: context =>
                 {
                     var quote = context.GetArgument<Quote>("input");
@@ -33,11 +37,11 @@ namespace Quotes.GraphQL.Mutations
 
             Field<ChannelType>(
                 "createChannel",
-                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "title" }),
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> {Name = "title"}),
                 resolve: context =>
                 {
                     var title = context.GetArgument<string>("title");
-                    return channelService.Add(new Channel { Title = title });
+                    return channelService.Add(new Channel {Title = title});
                 });
         }
     }
