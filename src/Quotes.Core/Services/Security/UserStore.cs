@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Quotes.Core.Services.Users;
 using Quotes.Domain.Models;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,12 +21,15 @@ namespace Quotes.Core.Services.Security
 
         public Task<string> GetUserIdAsync(User user, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_userService.GetUserByLogin(user.Login).Result.UserID);
+            var result = _userService.GetUserByUsername(user.UserName).Result;
+            return Task.FromResult(result?.UserID);
         }
 
         public Task<string> GetUserNameAsync(User user, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_userService.GetByID(user.Id).Result.Login);
+            return Task.FromResult(_userService.Exists(user.Id)
+                ? _userService.GetByID(user.Id).Result.UserName
+                : string.Empty);
         }
 
         public Task SetUserNameAsync(User user, string userName, CancellationToken cancellationToken)
@@ -77,7 +79,7 @@ namespace Quotes.Core.Services.Security
 
         public Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
-            return _userService.GetUserByLogin(normalizedUserName);
+            return _userService.GetUserByUsername(normalizedUserName);
         }
 
         public Task SetPasswordHashAsync(User user, string passwordHash, CancellationToken cancellationToken)

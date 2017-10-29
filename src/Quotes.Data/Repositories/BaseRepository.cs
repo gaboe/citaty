@@ -59,6 +59,13 @@ namespace Quotes.Data.Repositories
             return Collection.ReplaceOneAsync(x => x.Id.Equals(entity.Id), entity);
         }
 
+        public Task<bool> Exists(TKey id)
+        {
+            return Collection
+                .Find(entity => entity.Id.Equals(id))
+                .AnyAsync();
+        }
+
         public void AddRange(IEnumerable<TEntity> entities)
         {
             var enumerable = entities as IList<TEntity> ?? entities.ToList();

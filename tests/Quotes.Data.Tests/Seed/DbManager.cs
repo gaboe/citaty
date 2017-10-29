@@ -75,7 +75,7 @@ namespace Quotes.Tests.Data.Seed
 
                 connection.GetCollection<User>(userSchema).InsertOne(new User
                 {
-                    Login = TestingConstants.UserLogin,
+                    UserName = TestingConstants.UserName,
                     FavouriteChannels = new List<Channel>
                     {
                         channel,

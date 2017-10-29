@@ -19,8 +19,6 @@ namespace Quotes.Domain.Models
 
         public DateTime DateUpdated { get; set; }
 
-        public string Login { get; set; }
-
         public IList<Channel> FavouriteChannels { get; set; } = new List<Channel>();
 
         public string Password { get; set; }

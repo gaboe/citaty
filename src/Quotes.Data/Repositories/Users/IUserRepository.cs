@@ -6,7 +6,7 @@ namespace Quotes.Data.Repositories.Users
 {
     public interface IUserRepository : IBaseRepository<User, ObjectId>
     {
-        Task<User> GetUserByLogin(string login);
+        Task<User> GetUserByLogin(string username);
 
         void SetPasswordHash(ObjectId id, string passwordHash);
 

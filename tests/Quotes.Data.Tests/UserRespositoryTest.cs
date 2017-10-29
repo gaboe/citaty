@@ -19,10 +19,10 @@ namespace Quotes.Tests.Data
             {
                 //Arrange
                 var userRepository = resolver.Resolve<IUserRepository>();
-                var login = $"Integration{Guid.NewGuid()}";
+                var userName = $"Integration{Guid.NewGuid()}";
                 var user = new User
                 {
-                    Login = login,
+                    UserName = userName,
                 };
 
                 //Action
@@ -33,7 +33,7 @@ namespace Quotes.Tests.Data
                 Assert.IsNotNull(user.Id);
                 Assert.IsNotNull(user.DateCreated);
                 Assert.IsNotNull(user.DateUpdated);
-                Assert.AreEqual(login, user2.Login);
+                Assert.AreEqual(userName, user2.UserName);
                 Assert.IsNotNull(user2.DateCreated);
                 Assert.IsNotNull(user2.DateUpdated);
             }
@@ -49,7 +49,7 @@ namespace Quotes.Tests.Data
                 var channelRepository = resolver.Resolve<IChannelRepository>();
 
                 //Action
-                var user = userRepository.GetUserByLogin(TestingConstants.UserLogin).Result;
+                var user = userRepository.GetUserByLogin(TestingConstants.UserName).Result;
                 var channels = channelRepository.GetMany(user.FavouriteChannels.Select(x => x.Id)).Result;
 
                 //Assert

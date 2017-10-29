@@ -12,9 +12,12 @@ namespace Quotes.Data.Repositories.Users
         {
         }
 
-        public Task<User> GetUserByLogin(string login)
+        public Task<User> GetUserByLogin(string username)
         {
-            return Collection.FindAsync(x => x.Login.Equals(login)).Result.SingleAsync();
+            return Collection
+                .FindAsync(x => x.UserName.Equals(username))
+                .Result
+                .SingleOrDefaultAsync();
         }
 
         public void SetPasswordHash(ObjectId id, string passwordHash)

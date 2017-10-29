@@ -9,13 +9,15 @@ namespace Quotes.Core.Services.Users
     {
         Task<List<User>> GetAll();
 
-        Task<User> GetUserByLogin(string login);
+        Task<User> GetUserByUsername(string username);
 
         Task<User> AddUser(User user);
 
         Task<User> GetByID(ObjectId id);
 
         Task<User> GetByID(string id);
+
+        bool Exists(ObjectId id);
 
         void CreateUser(User user);
 

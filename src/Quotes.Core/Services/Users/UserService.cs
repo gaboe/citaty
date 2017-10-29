@@ -21,9 +21,9 @@ namespace Quotes.Core.Services.Users
             return _userRepository.GetAll();
         }
 
-        public Task<User> GetUserByLogin(string login)
+        public Task<User> GetUserByUsername(string username)
         {
-            return _userRepository.GetUserByLogin(login);
+            return _userRepository.GetUserByLogin(username);
         }
 
         public Task<User> AddUser(User user)
@@ -34,6 +34,11 @@ namespace Quotes.Core.Services.Users
         public Task<User> GetByID(ObjectId id)
         {
             return _userRepository.Get(id);
+        }
+
+        public bool Exists(ObjectId id)
+        {
+            return _userRepository.Exists(id).Result;
         }
 
         public void CreateUser(User user)

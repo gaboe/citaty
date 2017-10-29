@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Quotes.Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Produces("application/json")]
     [Route("graphql")]
     public class GraphQLController : Controller

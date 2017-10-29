@@ -41,7 +41,7 @@ namespace Quotes.GraphQL.Queries
                 resolve: context =>
                 {
                     var login = context.GetArgument<string>("login");
-                    return userService.GetUserByLogin(login);
+                    return userService.GetUserByUsername(login);
                 });
         }
     }

@@ -90,7 +90,7 @@ namespace Quotes.Tests.GraphQL.Queries
             var responseString = await response.Content.ReadAsStringAsync();
 
             // Assert
-            Assert.IsTrue(responseString.Contains(TestingConstants.UserLogin));
+            Assert.IsTrue(responseString.Contains(TestingConstants.UserName));
         }
     }
 }

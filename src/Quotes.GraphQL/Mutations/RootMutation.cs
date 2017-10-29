@@ -18,11 +18,13 @@ namespace Quotes.GraphQL.Mutations
 
             Field<UserType>(
                 "createUser",
-                arguments: new QueryArguments(new QueryArgument<StringGraphType> {Name = "login"},
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> {Name = "username"},
                     new QueryArgument<StringGraphType> {Name = "password"}),
                 resolve: context =>
                 {
-                    var user = identityService.CreateIdentity("test", "123456").Result;
+                    var userName = context.GetArgument<string>("username");
+                    var password = context.GetArgument<string>("password");
+                    var user = identityService.CreateIdentity(userName, password).Result;
                     return user;
                 });
 

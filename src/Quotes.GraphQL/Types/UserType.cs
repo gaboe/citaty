@@ -11,7 +11,7 @@ namespace Quotes.GraphQL.Types
         public UserType(IChannelService channelService)
         {
             Field(x => x.UserID);
-            Field(x => x.Login);
+            Field(x => x.UserName);
             Field<ListGraphType<ChannelType>>(
                 Name = nameof(User.FavouriteChannels).ToCamelCase(),
                 Description = "Favourite channels of user",
