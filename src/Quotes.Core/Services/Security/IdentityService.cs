@@ -9,18 +9,20 @@ namespace Quotes.Core.Services.Security
     public class IdentityService : IIdentityService
     {
         private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public IdentityService(UserManager<User> userManager)
+        public IdentityService(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        public Task<ClaimsIdentity> GetIdentity(string username, string password)
+        public async Task<ClaimsIdentity> GetIdentity(string username, string password)
         {
-            var user = _userManager.FindByNameAsync(username).Result;
-            return user != null
+            var result = await _signInManager.PasswordSignInAsync(username, password, false, false);
+            return await (result.Succeeded
                 ? Task.FromResult(new ClaimsIdentity(new GenericIdentity(username, "Token"), new Claim[] { }))
-                : Task.FromResult<ClaimsIdentity>(null);
+                : Task.FromResult<ClaimsIdentity>(null));
         }
 
         public Task<User> CreateIdentity(string username, string password)

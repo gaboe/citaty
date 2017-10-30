@@ -32,6 +32,7 @@ namespace Quotes.Api
             ConfigureAuth(services);
 
             services.AddTransient<IUserStore<User>, UserStore>();
+            services.AddTransient<IRoleStore<IdentityRole>, RoleStore>();
             services.AddIdentity<User,IdentityRole>().AddDefaultTokenProviders();
             var builder = new ContainerBuilder();
             var appConfig = Configuration.GetSection("App").Get<AppSettings>();
