@@ -7,6 +7,7 @@ using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Quotes.Testing;
 
 namespace Quotes.Tests.GraphQL.Mutations
 {
@@ -21,6 +22,8 @@ namespace Quotes.Tests.GraphQL.Mutations
                 .UseStartup<Startup>()
                 .UseConfiguration(AppSettingsProvider.GetConfigurationRoot()));
             _client = server.CreateClient();
+            _client.DefaultRequestHeaders.Authorization = TestingUtils.GetTokenForTestingUser(_client);
+
         }
 
         [TestMethod]

@@ -31,8 +31,6 @@ namespace Quotes.Tests.Data.Seed
                 var channelSchema = resolver.Resolve<ISchemaNameProvider<Channel>>().GetSchemaName();
 
                 var connection = resolver.Resolve<IDbConnectionFactory>().GetConnection();
-                connection.DropCollection(quoteSchema);
-                connection.DropCollection(channelSchema);
 
                 var channel = new Channel
                 {
@@ -76,6 +74,9 @@ namespace Quotes.Tests.Data.Seed
                 connection.GetCollection<User>(userSchema).InsertOne(new User
                 {
                     UserName = TestingConstants.UserName,
+                    PasswordHash =
+                        "AQAAAAEAACcQAAAAEJDjodI5EmkbP3JY7ejiB2/+3XBTnhsH0QZQYLrh1l79OHQLH89V7GqpawJgsO1bIw==",
+                    NormalizedUserName = "FICTIONAL.USER",
                     FavouriteChannels = new List<Channel>
                     {
                         channel,
@@ -120,6 +121,7 @@ namespace Quotes.Tests.Data.Seed
                 var connection = resolver.Resolve<IDbConnectionFactory>().GetConnection();
                 connection.DropCollection(resolver.Resolve<ISchemaNameProvider<Quote>>().GetSchemaName());
                 connection.DropCollection(resolver.Resolve<ISchemaNameProvider<Channel>>().GetSchemaName());
+                connection.DropCollection(resolver.Resolve<ISchemaNameProvider<User>>().GetSchemaName());
             }
         }
 
