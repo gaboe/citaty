@@ -20,7 +20,7 @@ namespace Quotes.Testing.Core
             var json = result.Content.ReadAsStringAsync().Result;
             var jObject = JObject.Parse(json);
             var accessToken = jObject.GetValue("access_token").ToString();
-            var authenticationHeaderValue = new AuthenticationHeaderValue("Authorization", $"bearer {accessToken}");
+            var authenticationHeaderValue = new AuthenticationHeaderValue("Bearer", accessToken);
             return authenticationHeaderValue;
         }
     }
