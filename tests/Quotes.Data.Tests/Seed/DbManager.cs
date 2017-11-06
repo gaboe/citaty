@@ -4,8 +4,8 @@ using MongoDB.Bson;
 using Quotes.Data.Context;
 using Quotes.Data.Utils;
 using Quotes.Domain.Models;
-using Quotes.Testing;
-using Quotes.Testing.Infrastructure;
+using Quotes.Testing.Core;
+using Quotes.Testing.Core.Infrastructure;
 using System;
 using System.Collections.Generic;
 
@@ -17,8 +17,8 @@ namespace Quotes.Tests.Data.Seed
         [AssemblyInitialize]
         public static void TruncateAndSeed(TestContext context)
         {
-            //if (!IsSeedingEnabled())
-            //    return;
+            if (!IsSeedingEnabled())
+                return;
             Truncate();
             Seed();
         }

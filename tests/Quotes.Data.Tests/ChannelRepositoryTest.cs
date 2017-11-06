@@ -2,7 +2,7 @@
 using Quotes.Data.Repositories.Channels;
 using Quotes.Data.Repositories.Quotes;
 using Quotes.Domain.Models;
-using Quotes.Testing.Infrastructure;
+using Quotes.Testing.Core.Infrastructure;
 using System;
 using System.Linq;
 

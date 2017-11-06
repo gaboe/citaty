@@ -2,16 +2,16 @@
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quotes.Api;
+using Quotes.GraphQL.Creators;
 using Quotes.GraphQL.Parsers;
 using Quotes.GraphQL.Tree;
-using Quotes.Testing;
-using Quotes.Testing.Infrastructure;
-using Quotes.Testing.Providers;
+using Quotes.Testing.Core;
+using Quotes.Testing.Core.Infrastructure;
+using Quotes.Testing.Core.Providers;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Quotes.GraphQL.Creators;
 
 namespace Quotes.Tests.GraphQL.Queries
 {
@@ -45,7 +45,7 @@ namespace Quotes.Tests.GraphQL.Queries
                     Childrens = new List<TreeNode>
                     {
                         new TreeNode {Value = "userID"},
-                        new TreeNode {Value = "login"},
+                        new TreeNode {Value = "userName"},
                         new TreeNode
                         {
                             Value = "favouriteChannels",
@@ -82,7 +82,7 @@ namespace Quotes.Tests.GraphQL.Queries
         public async Task GetUserByLoginTest()
         {
             //Arrange
-            const string query = "{\"query\":\"{\\n  user(login: \\\"fictional.user\\\") {\\n    userID\\n    login\\n  }\\n}\\n\",\"variables\":null,\"operationName\":null}";
+            const string query = "{\"query\":\"{\\n  user(userName: \\\"fictional.user\\\") {\\n    userID\\n    userName\\n  }\\n}\\n\",\"variables\":null,\"operationName\":null}";
 
             var content = new StringContent(query, Encoding.UTF8, "application/json");
 

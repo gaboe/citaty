@@ -9,13 +9,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.1.18" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Quotes.Api\Quotes.Api.csproj" />
-    <ProjectReference Include="..\Quotes.Testing\Quotes.Testing.csproj" />
+    <ProjectReference Include="..\Quotes.Testing.Core\Quotes.Testing.Core\Quotes.Testing.Core.csproj" />
   </ItemGroup>
 
 </Project>

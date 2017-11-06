@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Testing", "tests\Quotes.Testing\Quotes.Testing.csproj", "{2128F67B-4A5C-4312-9E67-0DE6CB052C4D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Tests.Data", "tests\Quotes.Data.Tests\Quotes.Tests.Data.csproj", "{021EB57C-CE74-4775-A9E2-81B8C33AC4ED}"
 EndProject
@@ -19,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Domain", "src\Quotes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.GraphQL", "src\Quotes.GraphQL\Quotes.GraphQL.csproj", "{3873BEFD-99E3-49CA-8750-18016A43AEED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quotes.Tests.GraphQL", "tests\Quotes.Tests.GraphQL\Quotes.Tests.GraphQL.csproj", "{32A42EFA-C311-4300-A01B-E755C40C74B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Tests.GraphQL", "tests\Quotes.Tests.GraphQL\Quotes.Tests.GraphQL.csproj", "{32A42EFA-C311-4300-A01B-E755C40C74B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotes.Testing.Core", "tests\Quotes.Testing.Core\Quotes.Testing.Core\Quotes.Testing.Core.csproj", "{520A4269-E9A7-48EE-AD35-8EE1ED6FC861}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2128F67B-4A5C-4312-9E67-0DE6CB052C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2128F67B-4A5C-4312-9E67-0DE6CB052C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2128F67B-4A5C-4312-9E67-0DE6CB052C4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2128F67B-4A5C-4312-9E67-0DE6CB052C4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{021EB57C-CE74-4775-A9E2-81B8C33AC4ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{021EB57C-CE74-4775-A9E2-81B8C33AC4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{021EB57C-CE74-4775-A9E2-81B8C33AC4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,14 +55,18 @@ Global
 		{32A42EFA-C311-4300-A01B-E755C40C74B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32A42EFA-C311-4300-A01B-E755C40C74B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32A42EFA-C311-4300-A01B-E755C40C74B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{520A4269-E9A7-48EE-AD35-8EE1ED6FC861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{520A4269-E9A7-48EE-AD35-8EE1ED6FC861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{520A4269-E9A7-48EE-AD35-8EE1ED6FC861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{520A4269-E9A7-48EE-AD35-8EE1ED6FC861}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{2128F67B-4A5C-4312-9E67-0DE6CB052C4D} = {3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}
 		{021EB57C-CE74-4775-A9E2-81B8C33AC4ED} = {3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}
 		{32A42EFA-C311-4300-A01B-E755C40C74B9} = {3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}
+		{520A4269-E9A7-48EE-AD35-8EE1ED6FC861} = {3E54A531-7A99-4B86-8A5F-3D76A6CBFD5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5825795-1229-4E50-B86D-9FC1EE9918B9}
