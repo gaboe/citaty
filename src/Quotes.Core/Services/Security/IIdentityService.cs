@@ -1,6 +1,6 @@
-﻿using System.Security.Claims;
+﻿using Quotes.Domain.Models;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using Quotes.Domain.Models;
 
 namespace Quotes.Core.Services.Security
 {

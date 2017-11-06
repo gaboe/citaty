@@ -18,8 +18,8 @@ namespace Quotes.GraphQL.Mutations
 
             Field<UserType>(
                 "createUser",
-                arguments: new QueryArguments(new QueryArgument<StringGraphType> {Name = "username"},
-                    new QueryArgument<StringGraphType> {Name = "password"}),
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "username" },
+                    new QueryArgument<StringGraphType> { Name = "password" }),
                 resolve: context =>
                 {
                     var userName = context.GetArgument<string>("username");
@@ -30,7 +30,7 @@ namespace Quotes.GraphQL.Mutations
 
             Field<QuoteType>(
                 "createQuote",
-                arguments: new QueryArguments(new QueryArgument<QuoteInputType> {Name = "input"}),
+                arguments: new QueryArguments(new QueryArgument<QuoteInputType> { Name = "input" }),
                 resolve: context =>
                 {
                     var quote = context.GetArgument<Quote>("input");
@@ -39,11 +39,11 @@ namespace Quotes.GraphQL.Mutations
 
             Field<ChannelType>(
                 "createChannel",
-                arguments: new QueryArguments(new QueryArgument<StringGraphType> {Name = "title"}),
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "title" }),
                 resolve: context =>
                 {
                     var title = context.GetArgument<string>("title");
-                    return channelService.Add(new Channel {Title = title});
+                    return channelService.Add(new Channel { Title = title });
                 });
         }
     }

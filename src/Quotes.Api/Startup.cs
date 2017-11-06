@@ -2,16 +2,16 @@
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Quotes.Api.Infrastructure;
 using Quotes.Core.Middlewares.Security;
-using Quotes.Domain.Settings;
-using System;
-using Microsoft.AspNetCore.Identity;
 using Quotes.Core.Services.Security;
 using Quotes.Domain.Models;
+using Quotes.Domain.Settings;
+using System;
 
 namespace Quotes.Api
 {
@@ -33,7 +33,7 @@ namespace Quotes.Api
 
             services.AddTransient<IUserStore<User>, UserStore>();
             services.AddTransient<IRoleStore<IdentityRole>, RoleStore>();
-            services.AddIdentity<User,IdentityRole>().AddDefaultTokenProviders();
+            services.AddIdentity<User, IdentityRole>().AddDefaultTokenProviders();
             var builder = new ContainerBuilder();
             var appConfig = Configuration.GetSection("App").Get<AppSettings>();
             builder.RegisterModule(new WebModule(appConfig));

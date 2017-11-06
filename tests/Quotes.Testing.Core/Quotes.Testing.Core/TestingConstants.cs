@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Quotes.Testing.Core
+﻿namespace Quotes.Testing.Core
 {
     public class TestingConstants
     {

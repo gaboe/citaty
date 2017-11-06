@@ -1,8 +1,8 @@
-﻿using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Identity;
+using Quotes.Domain.Models;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Quotes.Domain.Models;
 
 namespace Quotes.Core.Services.Security
 {
@@ -27,7 +27,7 @@ namespace Quotes.Core.Services.Security
 
         public Task<User> CreateIdentity(string username, string password)
         {
-            var identityResult = _userManager.CreateAsync(new User {UserName = username}, password).Result;
+            var identityResult = _userManager.CreateAsync(new User { UserName = username }, password).Result;
             return identityResult.Succeeded
                 ? _userManager.FindByNameAsync(username)
                 : null;

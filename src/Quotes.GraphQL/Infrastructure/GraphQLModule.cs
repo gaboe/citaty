@@ -1,12 +1,12 @@
 ﻿using Autofac;
 using GraphQL.Types;
+using Quotes.GraphQL.Creators;
 using Quotes.GraphQL.Mutations;
 using Quotes.GraphQL.Parsers;
 using Quotes.GraphQL.Queries;
 using Quotes.GraphQL.Schemas;
 using Quotes.GraphQL.Types;
 using System;
-using Quotes.GraphQL.Creators;
 
 namespace Quotes.GraphQL.Infrastructure
 {

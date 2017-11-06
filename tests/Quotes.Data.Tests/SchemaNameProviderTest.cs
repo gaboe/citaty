@@ -3,8 +3,8 @@ using MongoDB.Bson;
 using Quotes.Data.Utils;
 using Quotes.Domain;
 using Quotes.Domain.Models;
-using System;
 using Quotes.Testing.Core.Infrastructure;
+using System;
 
 namespace Quotes.Tests.Data
 {

@@ -24,7 +24,6 @@ namespace Quotes.Tests.GraphQL.Queries
                 .UseConfiguration(AppSettingsProvider.GetConfigurationRoot()));
             _client = server.CreateClient();
             _client.DefaultRequestHeaders.Authorization = TestingUtils.GetTokenForTestingUser(_client);
-
         }
 
         [TestMethod]

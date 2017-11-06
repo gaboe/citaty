@@ -9,5 +9,4 @@ namespace Quotes.Testing.Core.Infrastructure
             //builder.RegisterGeneric(typeof(DummyLoggerService<>)).As(typeof(ILogger<>));
         }
     }
-    
 }

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.IO;
-using Microsoft.Extensions.Configuration;
 
 namespace Quotes.Testing.Core.Providers
 {
@@ -12,7 +12,7 @@ namespace Quotes.Testing.Core.Providers
             var configurationBuilder = new ConfigurationBuilder()
                 .SetBasePath(Path.GetFullPath("..\\..\\..\\..\\..\\src\\Quotes.Api"))
                 .AddJsonFile($"appsettings.{environment}.json");
-                //.AddEnvironmentVariables();
+            //.AddEnvironmentVariables();
             var configurationRoot = configurationBuilder.Build();
             return configurationRoot;
         }

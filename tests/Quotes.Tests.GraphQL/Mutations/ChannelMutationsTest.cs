@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json.Linq;
 using Quotes.Api;
 using Quotes.Testing.Core;
 using Quotes.Testing.Core.Providers;
@@ -44,6 +43,5 @@ namespace Quotes.Tests.GraphQL.Mutations
             // Assert
             Assert.IsTrue(responseString.Contains(channelTitle));
         }
-
     }
 }
