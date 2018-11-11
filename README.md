@@ -6,9 +6,6 @@ Pre správne použitie appsettings.{eniroment}.json, je potreba mať správne na
 
 Seed db: Nastaviť enviroment variable "DB_SEEDING_ENABLED" na true alebo alebo alebo upraviť TruncateAndSeed na TestMethod
 
-email: quotes.development@gmail.com Quotes5656
-mongodb cloud: quotes.development Quotes5656
-
 # Build and Test
 TODO: Describe and show how to build your code and run the tests. 
 
